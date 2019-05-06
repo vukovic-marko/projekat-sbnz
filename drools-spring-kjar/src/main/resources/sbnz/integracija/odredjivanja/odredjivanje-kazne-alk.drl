@@ -1,0 +1,84 @@
+package sbnz.integracija
+
+import sbnz.integracija.example.facts.Zapisnik;
+import sbnz.integracija.example.facts.Kazna;
+import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
+import sbnz.integracija.example.facts.Vozac;
+
+rule "kazna za potpunu alkoholisanost"
+	when 
+		$z: Zapisnik( $voznja: voznjaPodUticajem )
+		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.POTPUNA_ALK, clan == null )
+	then
+		modify($v) { setClan(Kazna.Clanovi.CLAN_329) }
+end
+
+rule "kazna za veoma tesku alkoholisanost"
+	when
+		$z: Zapisnik( $voznja: voznjaPodUticajem )
+		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VEOMA_TESKA_ALK, clan == null )
+	then
+		modify($v) { setClan(Kazna.Clanovi.CLAN_330) }
+end
+
+rule "kazna za tesku alkoholisanost"
+	when
+		$z: Zapisnik( $voznja: voznjaPodUticajem )
+		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.TESKA_ALK, clan == null )
+	then
+		modify($v) { setClan(Kazna.Clanovi.CLAN_330) }
+end
+
+rule "kazna za voznju pod uticajem psihoaktivnih supstanci"
+	when
+		$z: Zapisnik( $voznja: voznjaPodUticajem )
+		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.PSIHOAKTIVNA_SUPS, clan == null )
+	then
+		modify($v) { 
+			setClan(Kazna.Clanovi.CLAN_331), 
+			setKazneniPoeni(8), 
+			setZabranaUpravljanja(6)
+		}
+end
+
+rule "kazna za visoku alkoholisanost"
+	when
+		$z: Zapisnik( $voznja: voznjaPodUticajem )
+		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VISOKA_ALK, clan == null )
+	then
+		modify($v) { 
+			setClan(Kazna.Clanovi.CLAN_331), 
+			setKazneniPoeni(8), 
+			setZabranaUpravljanja(4)
+		}
+end
+
+rule "kazna za srednju alkoholisanost"
+	when
+		$z: Zapisnik( $voznja: voznjaPodUticajem )
+		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.SREDNJA_ALK, clan == null )
+	then
+		modify($v) { 
+			setClan(Kazna.Clanovi.CLAN_332), 
+			setKazneniPoeni(6), 
+			setZabranaUpravljanja(3)
+		}
+end
+
+rule "kazna za umerenu alkoholisanost"
+	when
+		$z: Zapisnik( $voznja: voznjaPodUticajem )
+		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.UMERENA_ALK, clan == null )
+	then
+		modify($v) { setClan(Kazna.Clanovi.CLAN_332a) }
+end
+
+
+rule "kazna za blagu alkoholisanost"
+	when
+		$z: Zapisnik( $voznja: voznjaPodUticajem, $vozac: vozac )
+		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.BLAGA_ALK, clan == null )
+		Vozac( this == $vozac, tipDozvole == Vozac.TipDozvole.PROBNA )
+	then
+		modify($v) { setClan(Kazna.Clanovi.CLAN_332a) }
+end

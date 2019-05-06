@@ -1,0 +1,14 @@
+package sbnz.integracija
+
+import sbnz.integracija.example.facts.Zapisnik;
+import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
+
+rule "pod uticajem psihoaktivnih supstanci"
+salience 97
+	when 
+		$z: Zapisnik( prisustvoPsihoaktivnihSupstanci == true, voznjaPodUticajem == null )
+	then
+		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
+		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.PSIHOAKTIVNA_SUPS);
+		modify($z) { setVoznjaPodUticajem(k); }
+end

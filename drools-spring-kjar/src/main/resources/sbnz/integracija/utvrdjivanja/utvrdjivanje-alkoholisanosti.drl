@@ -1,0 +1,74 @@
+package sbnz.integracija
+
+import sbnz.integracija.example.facts.Zapisnik;
+import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
+
+rule "blaga alkoholisanost"
+salience 94
+	when 
+		$z: Zapisnik( $prisustvo : prisustvoAlkohola > 0.0, voznjaPodUticajem == null )
+	then
+		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
+		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.BLAGA_ALK);
+		modify($z) { setVoznjaPodUticajem(k); }
+end
+
+rule "umerena alkoholisanost"
+salience 95
+	when 
+		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 0.2, voznjaPodUticajem == null )
+	then
+		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
+		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.UMERENA_ALK);
+		modify($z) { setVoznjaPodUticajem(k); }
+end
+
+rule "srednja alkoholisanost"
+salience 96
+	when 
+		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 0.5, voznjaPodUticajem == null )
+	then
+		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
+		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.SREDNJA_ALK);
+		modify($z) { setVoznjaPodUticajem(k); }
+end
+
+rule "visoka alkoholisanost"
+salience 97
+	when 
+		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 0.8, voznjaPodUticajem == null )
+	then
+		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
+		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VISOKA_ALK);
+		modify($z) { setVoznjaPodUticajem(k); }
+end
+
+rule "teska alkoholisanost"
+salience 98
+	when 
+		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 1.2, voznjaPodUticajem == null )
+	then
+		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
+		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.TESKA_ALK);
+		modify($z) { setVoznjaPodUticajem(k); }
+end
+
+rule "veoma teska alkoholisanost"
+salience 99
+	when 
+		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 1.6, voznjaPodUticajem == null )
+	then
+		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
+		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VEOMA_TESKA_ALK);
+		modify($z) { setVoznjaPodUticajem(k); }
+end
+
+rule "potpuna alkoholisanost"
+salience 100
+	when 
+		$z: Zapisnik( $prisustvo : prisustvoAlkohola > 2.0, voznjaPodUticajem == null )
+	then
+		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
+		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.POTPUNA_ALK);
+		modify($z) { setVoznjaPodUticajem(k); }
+end
