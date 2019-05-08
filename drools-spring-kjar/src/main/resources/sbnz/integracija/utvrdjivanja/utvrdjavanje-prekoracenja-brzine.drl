@@ -7,45 +7,45 @@ import sbnz.integracija.example.facts.Vozac;
 
 rule "prekoracenje brzine za vozaca sa trajnom dozvolom"
 	when 
-		$z: Zapisnik( $vozac: vozac, ostvarenaBrzina > dozvoljenaBrzina )
+		$z: Zapisnik( $vozac: vozac, ostvarenaBrzina > dozvoljenaBrzina, prekoracenjeBrzine == null )
 		$v: Vozac( this == $vozac, tipDozvole == Vozac.TipDozvole.TRAJNA )
 	then
 		KaznaPrekoracenjaBrzine b = new KaznaPrekoracenjaBrzine();
 		Double prekoracenje = $z.getOstvarenaBrzina() - $z.getDozvoljenaBrzina();
 		b.setIznosPrekoracenja(prekoracenje);
-		modify($z) { setPrekoracenjeBrzine(b); }
+		modify($z) { setPrekoracenjeBrzine(b) }
 end
 
 rule "prekoracenje brzine za vozaca sa probnom dozvolom na autoputu"
 	when 
-		$z: Zapisnik( $vozac: vozac, dozvoljenaBrzina == 130.0, ostvarenaBrzina > 100.0 )
+		$z: Zapisnik( $vozac: vozac, dozvoljenaBrzina == 130.0, ostvarenaBrzina > 100.0, prekoracenjeBrzine == null )
 		$v: Vozac( this == $vozac, tipDozvole == Vozac.TipDozvole.PROBNA )
 	then
 		KaznaPrekoracenjaBrzine b = new KaznaPrekoracenjaBrzine();
 		Double prekoracenje = $z.getOstvarenaBrzina() - 100.0;
 		b.setIznosPrekoracenja(prekoracenje);
-		modify($z) { setPrekoracenjeBrzine(b); }
+		modify($z) { setPrekoracenjeBrzine(b) }
 end
 
 rule "prekoracenje brzine za vozaca sa probnom dozvolom na motoputu"
 	when 
-		$z: Zapisnik( $vozac: vozac, dozvoljenaBrzina == 100.0, ostvarenaBrzina > 90.0 )
+		$z: Zapisnik( $vozac: vozac, dozvoljenaBrzina == 100.0, ostvarenaBrzina > 90.0, prekoracenjeBrzine == null )
 		$v: Vozac( this == $vozac, tipDozvole == Vozac.TipDozvole.PROBNA )
 	then
 		KaznaPrekoracenjaBrzine b = new KaznaPrekoracenjaBrzine();
 		Double prekoracenje = $z.getOstvarenaBrzina() - 90.0;
 		b.setIznosPrekoracenja(prekoracenje);
-		modify($z) { setPrekoracenjeBrzine(b); }
+		modify($z) { setPrekoracenjeBrzine(b) }
 end
 
 rule "prekoracenje brzine za vozaca sa probnom dozvolom na ostalim putevima"
 salience -1
 	when 
-		$z: Zapisnik( $vozac: vozac, dozvoljenaBrzina != null, ostvarenaBrzina!= null, ostvarenaBrzina > 0.9 * dozvoljenaBrzina )
+		$z: Zapisnik( $vozac: vozac, prekoracenjeBrzine == null, dozvoljenaBrzina != null, ostvarenaBrzina!= null, ostvarenaBrzina > 0.9 * dozvoljenaBrzina )
 		$v: Vozac( this == $vozac, tipDozvole == Vozac.TipDozvole.PROBNA )
 	then
 		KaznaPrekoracenjaBrzine b = new KaznaPrekoracenjaBrzine();
 		Double prekoracenje = $z.getOstvarenaBrzina() - 0.9 * $z.getDozvoljenaBrzina();
 		b.setIznosPrekoracenja(prekoracenje);
-		modify($z) { setPrekoracenjeBrzine(b); }
+		modify($z) { setPrekoracenjeBrzine(b) }
 end

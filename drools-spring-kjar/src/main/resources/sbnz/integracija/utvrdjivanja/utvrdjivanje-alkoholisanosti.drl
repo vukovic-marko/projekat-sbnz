@@ -10,7 +10,7 @@ salience 94
 	then
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.BLAGA_ALK);
-		modify($z) { setVoznjaPodUticajem(k); }
+		modify($z) { setVoznjaPodUticajem(k) }
 end
 
 rule "umerena alkoholisanost"
@@ -20,7 +20,7 @@ salience 95
 	then
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.UMERENA_ALK);
-		modify($z) { setVoznjaPodUticajem(k); }
+		modify($z) { setVoznjaPodUticajem(k) }
 end
 
 rule "srednja alkoholisanost"
@@ -30,7 +30,7 @@ salience 96
 	then
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.SREDNJA_ALK);
-		modify($z) { setVoznjaPodUticajem(k); }
+		modify($z) { setVoznjaPodUticajem(k) }
 end
 
 rule "visoka alkoholisanost"
@@ -40,7 +40,7 @@ salience 97
 	then
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VISOKA_ALK);
-		modify($z) { setVoznjaPodUticajem(k); }
+		modify($z) { setVoznjaPodUticajem(k) }
 end
 
 rule "teska alkoholisanost"
@@ -50,7 +50,7 @@ salience 98
 	then
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.TESKA_ALK);
-		modify($z) { setVoznjaPodUticajem(k); }
+		modify($z) { setVoznjaPodUticajem(k) }
 end
 
 rule "veoma teska alkoholisanost"
@@ -60,7 +60,7 @@ salience 99
 	then
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VEOMA_TESKA_ALK);
-		modify($z) { setVoznjaPodUticajem(k); }
+		modify($z) { setVoznjaPodUticajem(k) }
 end
 
 rule "potpuna alkoholisanost"
@@ -70,5 +70,5 @@ salience 100
 	then
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.POTPUNA_ALK);
-		modify($z) { setVoznjaPodUticajem(k); }
+		modify($z) { setVoznjaPodUticajem(k) }
 end
