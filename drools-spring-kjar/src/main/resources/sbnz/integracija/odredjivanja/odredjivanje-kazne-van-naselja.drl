@@ -1,0 +1,75 @@
+package sbnz.integracija.odredjivanja;
+
+import sbnz.integracija.example.facts.Zapisnik;
+import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
+import sbnz.integracija.example.facts.Kazna;
+
+rule "kazna za nasilnicku voznju"
+    when
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
+        $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 100, clan == null)
+    then
+        modify($k) { setClan(Kazna.Clanovi.CLAN_329) }
+end
+
+rule "prekoracenje od 81 do 100 km/h"
+salience -1
+    when
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
+        $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 80, clan == null)
+    then
+        modify($k) { setClan(Kazna.Clanovi.CLAN_330) }
+end
+
+rule "prekoracenje od 61 do 80 km/h"
+salience -2
+    when
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
+        $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 60, clan == null)
+    then
+        modify($k) {
+            setClan(Kazna.Clanovi.CLAN_331),
+            setKazneniPoeni(4),
+            setZabranaUpravljanja(3)
+        }
+end
+
+rule "prekoracenje od 41 do 60 km/h"
+salience -3
+    when
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
+        $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 40, clan == null)
+    then
+        modify($k) {
+            setClan(Kazna.Clanovi.CLAN_332),
+            setKazneniPoeni(3),
+            setZabranaUpravljanja(1)
+        }
+end
+
+rule "prekoracenje od 21 do 40 km/h"
+salience -4
+    when
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
+        $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 20, clan == null)
+    then
+        modify($k) { setClan(Kazna.Clanovi.CLAN_332a) }
+end
+
+rule "prekoracenje od 11 do 20 km/h"
+salience -5
+    when
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
+        $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 10, clan == null)
+    then
+        modify($k) { setClan(Kazna.Clanovi.CLAN_333) }
+end
+
+rule "prekoracenje do 10 km/h"
+salience -6
+    when
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
+        $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 0, clan == null)
+    then
+        modify($k) { setClan(Kazna.Clanovi.CLAN_334) }
+end
