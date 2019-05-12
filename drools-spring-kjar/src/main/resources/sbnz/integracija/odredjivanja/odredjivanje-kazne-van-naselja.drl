@@ -5,6 +5,7 @@ import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
 import sbnz.integracija.example.facts.Kazna;
 
 rule "kazna za nasilnicku voznju"
+salience 20
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
         $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 100, clan == null)
@@ -29,7 +30,7 @@ salience -2
     then
         modify($k) {
             setClan(Kazna.Clanovi.CLAN_331),
-            setKazneniPoeni(4),
+            setKazneniPoeni(6),
             setZabranaUpravljanja(3)
         }
 end

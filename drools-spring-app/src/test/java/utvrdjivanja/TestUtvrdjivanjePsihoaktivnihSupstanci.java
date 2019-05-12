@@ -78,7 +78,6 @@ public class TestUtvrdjivanjePsihoaktivnihSupstanci {
 		
 		if(z.getVoznjaPodUticajem().getTip() == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VISOKA_ALK ||
 				z.getVoznjaPodUticajem().getTip() == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.PSIHOAKTIVNA_SUPS) {
-			System.out.println(z.getVoznjaPodUticajem().getTip());
 			assertTrue(true);
 		}
 	}

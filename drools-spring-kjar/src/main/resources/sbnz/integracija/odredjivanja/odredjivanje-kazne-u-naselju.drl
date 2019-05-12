@@ -5,8 +5,9 @@ import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
 import sbnz.integracija.example.facts.Kazna;
 
 rule "kazna za nasilnicku voznju"
+salience 20
     when
-        $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.REDOVNA, naseljenoMesto == true )
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == true )
         $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 90, clan == null )
     then
         modify($k) { setClan(Kazna.Clanovi.CLAN_329) }
@@ -15,7 +16,7 @@ end
 rule "prekoracenje od 71 do 90 km/h"
 salience -1
     when
-        $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.REDOVNA, naseljenoMesto == true )
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == true )
         $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 70, clan == null )
     then
         modify($k) { setClan(Kazna.Clanovi.CLAN_330) }
@@ -24,7 +25,7 @@ end
 rule "prekoracenje od 51 do 70 km/h"
 salience -2
     when
-        $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.REDOVNA, naseljenoMesto == true )
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == true )
         $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 50, clan == null )
     then
         modify($k) {
@@ -37,7 +38,7 @@ end
 rule "prekoracenje od 31 do 50 km/h"
 salience -3
     when
-        $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.REDOVNA, naseljenoMesto == true )
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == true )
         $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 30, clan == null )
     then
         modify($k) {
@@ -50,7 +51,7 @@ end
 rule "prekoracenje od 21 do 30 km/h"
 salience -4
     when
-        $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.REDOVNA, naseljenoMesto == true )
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == true )
         $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 20, clan == null )
     then
         modify($k) { setClan(Kazna.Clanovi.CLAN_332a) }
@@ -59,7 +60,7 @@ end
 rule "prekoracenje od 11 do 20 km/h"
 salience -5
     when
-        $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.REDOVNA, naseljenoMesto == true )
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == true )
         $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 10, clan == null )
     then
         modify($k) { setClan(Kazna.Clanovi.CLAN_333) }
@@ -68,7 +69,7 @@ end
 rule "prekoracenje do 10 km/h"
 salience -6
     when
-        $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.REDOVNA, naseljenoMesto == true )
+        $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == true )
         $k: KaznaPrekoracenjaBrzine( this == $kazna, iznosPrekoracenja > 0, clan == null )
     then
         modify($k) { setClan(Kazna.Clanovi.CLAN_334) }

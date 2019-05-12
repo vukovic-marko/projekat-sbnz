@@ -13,7 +13,7 @@ import sbnz.integracija.example.facts.Zapisnik;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class OdredjivanjeKazneZaPrekoracenjeBrzineVanNaselja {
+public class TestOdredjivanjeKazneVanNaselja {
 
     public static KieSession kSession;
 
@@ -77,7 +77,7 @@ public class OdredjivanjeKazneZaPrekoracenjeBrzineVanNaselja {
         kSession.fireAllRules();
 
         assertThat(Kazna.Clanovi.CLAN_331, is(z.getPrekoracenjeBrzine().getClan()));
-        assertThat(4, is(z.getPrekoracenjeBrzine().getKazneniPoeni()));
+        assertThat(6, is(z.getPrekoracenjeBrzine().getKazneniPoeni()));
         assertThat(3, is(z.getPrekoracenjeBrzine().getZabranaUpravljanja()));
     }
 

@@ -1,16 +1,22 @@
 package sbnz.integracija.example.facts;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Zapisnik {
 	
 	public enum Zona {
 		REDOVNA, ZONA_USPORENOG_SAOBRACAJA, ZONA_30, ZONA_SKOLE
-	};
+	}
 	
 	// polja vezana za prekoracenje brzine
 	private Boolean naseljenoMesto;
 	private Zona zona;
 	private Double dozvoljenaBrzina;
 	private Double ostvarenaBrzina;
+
+	private LocalDate datum;
+	private LocalTime vreme;
 	
 	// polja vezana za voznju pod uticajem
 	private Double prisustvoAlkohola; // u mg/l
@@ -108,5 +114,21 @@ public class Zapisnik {
 
 	public void setVoznjaPodUticajem(KaznaVoznjaPodUticajem voznjaPodUticajem) {
 		this.voznjaPodUticajem = voznjaPodUticajem;
+	}
+
+	public LocalDate getDatum() {
+		return datum;
+	}
+
+	public void setDatum(LocalDate datum) {
+		this.datum = datum;
+	}
+
+	public LocalTime getVreme() {
+		return vreme;
+	}
+
+	public void setVreme(LocalTime vreme) {
+		this.vreme = vreme;
 	}
 }

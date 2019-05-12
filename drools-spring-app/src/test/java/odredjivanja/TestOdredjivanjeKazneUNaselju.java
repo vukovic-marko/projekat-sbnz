@@ -8,13 +8,12 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import sbnz.integracija.example.facts.Kazna;
 import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
-import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 import sbnz.integracija.example.facts.Zapisnik;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class TestOdredjivanjeKaznePrekVan {
+public class TestOdredjivanjeKazneUNaselju {
 
     public static KieSession kSession;
 

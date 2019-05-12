@@ -15,7 +15,7 @@ import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 import sbnz.integracija.example.facts.Vozac;
 import sbnz.integracija.example.facts.Zapisnik;
 
-public class TestOdredjivanjeKazneAlk {
+public class TestOdredjivanjeKazneAlkPsih {
 
 public static KieSession kSession;
 	
