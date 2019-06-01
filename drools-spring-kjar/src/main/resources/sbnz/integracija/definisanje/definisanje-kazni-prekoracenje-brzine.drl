@@ -1,0 +1,194 @@
+package sbnz.integracija
+
+import sbnz.integracija.example.facts.Zapisnik;
+import sbnz.integracija.example.facts.Kazna;
+import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
+import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
+import sbnz.integracija.example.facts.Vozac;
+
+rule "kazna za nasilnicku voznju po clanu 329 uz izazivanje saobracajne nesrece, prekoracenje brzine"
+salience -10
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, saobracajnaNesreca == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_329, obradjena == false )
+    then
+        modify($v) {
+            setZatvorskaKazna(new Integer[] {45, 60}),
+            setNovcanaKazna(new Double[] {130000.0, 150000.0}),
+            setKazneniPoeni(17),
+            setZabranaUpravljanja(11),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za nasilnicku voznju po clanu 329, prekoracenje brzine"
+salience -11
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_329, obradjena == false )
+    then
+        modify($v) {
+            setZatvorskaKazna(new Integer[] {30, 60}),
+            setNovcanaKazna(new Double[] {120000.0, 140000.0}),
+            setKazneniPoeni(15),
+            setZabranaUpravljanja(9),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 330 uz izazivanje saobracajne nesrece, prekoracenje brzine"
+salience -10
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, saobracajnaNesreca == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_330, obradjena == false )
+    then
+        modify($v) {
+            setZatvorskaKazna(new Integer[] {45}),
+            setNovcanaKazna(new Double[] {120000.0, 150000.0}),
+            setKazneniPoeni(16),
+            setZabranaUpravljanja(9),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 330, prekoracenje brzine"
+salience -11
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_330, obradjena == false )
+    then
+        modify($v) {
+            setZatvorskaKazna(new Integer[] {15, 0}),
+            setNovcanaKazna(new Double[] {100000.0, 120000.0}),
+            setKazneniPoeni(14),
+            setZabranaUpravljanja(8),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 331 uz izazivanje saobracajne nesrece, prekoracenje brzine"
+salience -10
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, saobracajnaNesreca == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_331, obradjena == false )
+    then
+        modify($v) {
+            setZatvorskaKazna(new Integer[] {0, 60}),
+            setNovcanaKazna(new Double[] {40000.0, 60000.0}),
+            //setKazneniPoeni(3),
+            setObradjena(true)
+        }
+
+        if ($v.getKazneniPoeni() == null)
+            modify($v) { setKazneniPoeni(3)}
+end
+
+rule "kazna za prekoracenje brzine po clanu 331, prekoracenje brzine"
+salience -11
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_331, obradjena == false )
+    then
+        modify($v) {
+            setZatvorskaKazna(new Integer[] {30}),
+            setNovcanaKazna(new Double[] {20000.0, 40000.0}),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 332 uz izazivanje saobracajne nesrece, prekoracenje brzine"
+salience -10
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, saobracajnaNesreca == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_332, obradjena == false )
+    then
+        modify($v) {
+            setZatvorskaKazna(new Integer[] {0, 45}),
+            setNovcanaKazna(new Double[] {20000.0, 40000.0}),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 332, prekoracenje brzine, prekoracenje brzine"
+salience -11
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_332, obradjena == false )
+    then
+        modify($v) {
+            setNovcanaKazna(new Double[] {10000.0, 20000.0}),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 332a uz izazivanje saobracajne nesrece, prekoracenje brzine"
+salience -10
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, saobracajnaNesreca == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_332a, obradjena == false )
+    then
+        modify($v) {
+            setNovcanaKazna(new Double[] {15000.0, 30000.0}),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 332a, prekoracenje brzine"
+salience -11
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_332a, obradjena == false )
+    then
+        modify($v) {
+            setNovcanaKazna(new Double[] {10000.0}),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 333 uz izazivanje saobracajne nesrece, prekoracenje brzine"
+salience -10
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, saobracajnaNesreca == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_333, obradjena == false )
+    then
+        modify($v) {
+            setNovcanaKazna(new Double[] {6000.0, 18000.0}),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 333, prekoracenje brzine"
+salience -11
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_333, obradjena == false )
+    then
+        modify($v) {
+            setNovcanaKazna(new Double[] {5000.0}),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 334 uz izazivanje saobracajne nesrece, prekoracenje brzine"
+salience -10
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, saobracajnaNesreca == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_334, obradjena == false )
+    then
+        modify($v) {
+            setNovcanaKazna(new Double[] {5000.0, 15000.0}),
+            setObradjena(true)
+        }
+end
+
+rule "kazna za prekoracenje brzine po clanu 334, prekoracenje brzine"
+salience -11
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, clan == Kazna.Clanovi.CLAN_334, obradjena == false )
+    then
+        modify($v) {
+            setNovcanaKazna(new Double[] {3000.0}),
+            setObradjena(true)
+        }
+end

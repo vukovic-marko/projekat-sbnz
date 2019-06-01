@@ -22,6 +22,7 @@ public class Zapisnik {
 	private Double prisustvoAlkohola; // u mg/l
 	private Boolean prisustvoPsihoaktivnihSupstanci;
 	private Boolean ometa;
+	private Boolean saobracajnaNesreca;
 	
 	// podaci o vozacu
 	private Vozac vozac;
@@ -130,5 +131,13 @@ public class Zapisnik {
 
 	public void setVreme(LocalTime vreme) {
 		this.vreme = vreme;
+	}
+
+	public Boolean getSaobracajnaNesreca() {
+		return saobracajnaNesreca;
+	}
+
+	public void setSaobracajnaNesreca(Boolean saobracajnaNesreca) {
+		this.saobracajnaNesreca = saobracajnaNesreca;
 	}
 }

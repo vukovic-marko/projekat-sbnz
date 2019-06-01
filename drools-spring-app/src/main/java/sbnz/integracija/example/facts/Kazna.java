@@ -13,6 +13,8 @@ public class Kazna {
 	private Integer zabranaUpravljanja;
 
 	private Clanovi clan;
+
+	private Boolean obradjena;
 	
 	public Kazna() {
 		
@@ -57,5 +59,12 @@ public class Kazna {
 	public void setZabranaUpravljanja(Integer zabranaUpravljanja) {
 		this.zabranaUpravljanja = zabranaUpravljanja;
 	}
-	
+
+	public Boolean getObradjena() {
+		return obradjena;
+	}
+
+	public void setObradjena(Boolean obradjena) {
+		this.obradjena = obradjena;
+	}
 }
