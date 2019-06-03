@@ -1,7 +1,7 @@
 package sbnz.integracija.example.facts;
 
 public class Kazna {
-	
+
 	public enum Clanovi {
 		CLAN_329, CLAN_330, CLAN_331, CLAN_332, 
 		CLAN_332a, CLAN_333, CLAN_334

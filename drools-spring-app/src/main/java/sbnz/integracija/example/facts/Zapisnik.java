@@ -1,10 +1,15 @@
 package sbnz.integracija.example.facts;
 
+import org.springframework.data.annotation.Id;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Zapisnik {
-	
+
+	@Id
+	private String id;
+
 	public enum Zona {
 		REDOVNA, ZONA_USPORENOG_SAOBRACAJA, ZONA_30, ZONA_SKOLE
 	}
@@ -17,6 +22,8 @@ public class Zapisnik {
 
 	private LocalDate datum;
 	private LocalTime vreme;
+
+	private String ulica;
 	
 	// polja vezana za voznju pod uticajem
 	private Double prisustvoAlkohola; // u mg/l
@@ -139,5 +146,21 @@ public class Zapisnik {
 
 	public void setSaobracajnaNesreca(Boolean saobracajnaNesreca) {
 		this.saobracajnaNesreca = saobracajnaNesreca;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getUlica() {
+		return ulica;
+	}
+
+	public void setUlica(String ulica) {
+		this.ulica = ulica;
 	}
 }
