@@ -12,7 +12,7 @@ import java.util.List;
 
 //import sbnz.integracija.example.facts.Item;
 
-//@CrossOrigin(origins = "http://localhost:3304")
+@CrossOrigin
 @RestController
 public class SampleAppController {
 	private static Logger log = LoggerFactory.getLogger(SampleAppController.class);
@@ -80,7 +80,7 @@ public class SampleAppController {
 
 
 		//return ResponseEntity.ok(sampleAppRepository.save(zapisnik));
-		return ResponseEntity.ok(null);
+		return ResponseEntity.ok(sampleService.obradiZapisnik(zapisnik));
 
 	}
 

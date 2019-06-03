@@ -15,6 +15,7 @@ rule "prekoracenje brzine za vozaca sa trajnom dozvolom"
 		Double prekoracenje = $z.getOstvarenaBrzina() - $z.getDozvoljenaBrzina();
 		b.setIznosPrekoracenja(prekoracenje);
         b.setObradjena(false);
+        b.setClan(null);
 
         insert(b);
 		modify($z) { setPrekoracenjeBrzine(b) }
@@ -29,6 +30,7 @@ rule "prekoracenje brzine za vozaca sa probnom dozvolom na autoputu"
 		Double prekoracenje = $z.getOstvarenaBrzina() - 100.0;
 		b.setIznosPrekoracenja(prekoracenje);
         b.setObradjena(false);
+        b.setClan(null);
 
         insert(b);
 		modify($z) { setPrekoracenjeBrzine(b) }
@@ -43,6 +45,7 @@ rule "prekoracenje brzine za vozaca sa probnom dozvolom na motoputu"
 		Double prekoracenje = $z.getOstvarenaBrzina() - 90.0;
 		b.setIznosPrekoracenja(prekoracenje);
         b.setObradjena(false);
+        b.setClan(null);
 
         insert(b);
 		modify($z) { setPrekoracenjeBrzine(b) }
@@ -58,6 +61,7 @@ salience -1
 		Double prekoracenje = $z.getOstvarenaBrzina() - 0.9 * $z.getDozvoljenaBrzina();
 		b.setIznosPrekoracenja(prekoracenje);
         b.setObradjena(false);
+        b.setClan(null);
 
         insert(b);
 		modify($z) { setPrekoracenjeBrzine(b) }

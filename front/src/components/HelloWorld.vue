@@ -65,7 +65,7 @@
       <label for="form-row-alkohol" class="small-title">Podaci o alkoholisanosti i psihoaktivnim supstancama</label>
       <div class="form-row form-row-alkohol justify-content-md-center">
         <div class="form-group col-md-6">
-          <input type="number" id="kolicinaAlkoholaPrekrsaja" class="form-control" min="0" placeholder="Količina alkohola u krvi" v-model.number="zapisnik.prisustvoAlkohola">
+          <input type="number" id="kolicinaAlkoholaPrekrsaja" class="form-control" min="0" step="0.01" placeholder="Količina alkohola u krvi" v-model.number="zapisnik.prisustvoAlkohola">
         </div>
         <!-- <div class="form-group col-md-5">
           <label for="prisustvoPsihoaktivnihPrekrsaja" class="form-check-label col-md-5">Psihoaktivne supstance: </label>
@@ -134,23 +134,27 @@ export default {
           this.$data.zapisnik.ostvarenaBrzina != null && this.$data.zapisnik.ostvarenaBrzina != '' &&
           this.$data.zapisnik.dozvoljenaBrzina != null && this.$data.zapisnik.dozvoljenaBrzina != '' &&
           this.$data.zapisnik.prisustvoAlkohola != null && this.$data.zapisnik.prisustvoAlkohola != null) {
-        console.log(this.$data.nasMest)
+        // console.log(this.$data.nasMest)
         
         if (this.$data.nasMest == "U naselju") {
-          console.log("yes")
+          // console.log("yes")
           this.$data.zapisnik.naseljenoMesto = true
         } else if (this.$data.nasMest == "Van naselja") {
-          console.log("no")
+          // console.log("no")
           this.$data.zapisnik.naseljenoMesto = false
         }
 
-        console.log(this.$data.zapisnik);
+        // console.log(this.$data.zapisnik);
 
+        console.log('saljem zahtev')
         axios.post('http://localhost:8080/zapisnik', this.$data.zapisnik)
         .then(response => {
-          console.log(response.data)
+          console.log('uspesno')
+          console.log(response.data.voznjaPodUticajem)
+          console.log(response.data.prekoracenjeBrzine)
         })
         .catch(e => {
+          console.log('neuspesno')
           console.log(e);
         })
       } else {

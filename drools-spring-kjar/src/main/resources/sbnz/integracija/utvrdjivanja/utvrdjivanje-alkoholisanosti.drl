@@ -11,6 +11,7 @@ salience 94
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.BLAGA_ALK);
         k.setObradjena(false);
+        k.setClan(null);
 
         insert(k);
 		modify($z) { setVoznjaPodUticajem(k) }
@@ -24,6 +25,7 @@ salience 95
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.UMERENA_ALK);
         k.setObradjena(false);
+        k.setClan(null);
 
         insert(k);
 		modify($z) { setVoznjaPodUticajem(k) }
@@ -37,6 +39,7 @@ salience 96
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.SREDNJA_ALK);
         k.setObradjena(false);
+        k.setClan(null);
 
         insert(k);
 		modify($z) { setVoznjaPodUticajem(k) }
@@ -50,6 +53,7 @@ salience 97
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VISOKA_ALK);
         k.setObradjena(false);
+        k.setClan(null);
 
         insert(k);
 		modify($z) { setVoznjaPodUticajem(k) }
@@ -63,6 +67,7 @@ salience 98
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.TESKA_ALK);
         k.setObradjena(false);
+        k.setClan(null);
 
         insert(k);
 		modify($z) { setVoznjaPodUticajem(k) }
@@ -76,6 +81,7 @@ salience 99
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VEOMA_TESKA_ALK);
         k.setObradjena(false);
+        k.setClan(null);
 
         insert(k);
 		modify($z) { setVoznjaPodUticajem(k) }
@@ -89,6 +95,7 @@ salience 100
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.POTPUNA_ALK);
         k.setObradjena(false);
+        k.setClan(null);
 
         insert(k);
 		modify($z) { setVoznjaPodUticajem(k) }

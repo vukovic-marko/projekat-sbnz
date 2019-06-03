@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sbnz.integracija.example.facts.Zapisnik;
 
 //import sbnz.integracija.example.facts.Item;
 
@@ -29,4 +30,15 @@ public class SampleAppService {
 //		kieSession.dispose();
 //		return i;
 //	}
+
+	public Zapisnik obradiZapisnik(Zapisnik z) {
+		KieSession kieSession = kieContainer.newKieSession();
+		kieSession.insert(z);
+		kieSession.insert(z.getVozac());
+		System.out.println(z);
+		System.out.println(z.getPrekoracenjeBrzine());
+		kieSession.fireAllRules();
+		kieSession.dispose();
+		return z;
+	}
 }
