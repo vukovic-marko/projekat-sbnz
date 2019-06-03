@@ -2,6 +2,7 @@ package sbnz.integracija
 
 import sbnz.integracija.example.facts.Zapisnik;
 import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
+import sbnz.integracija.example.facts.Kazna;
 import sbnz.integracija.example.facts.Vozac;
 
 
@@ -13,6 +14,9 @@ rule "prekoracenje brzine za vozaca sa trajnom dozvolom"
 		KaznaPrekoracenjaBrzine b = new KaznaPrekoracenjaBrzine();
 		Double prekoracenje = $z.getOstvarenaBrzina() - $z.getDozvoljenaBrzina();
 		b.setIznosPrekoracenja(prekoracenje);
+        b.setObradjena(false);
+
+        insert(b);
 		modify($z) { setPrekoracenjeBrzine(b) }
 end
 
@@ -24,6 +28,9 @@ rule "prekoracenje brzine za vozaca sa probnom dozvolom na autoputu"
 		KaznaPrekoracenjaBrzine b = new KaznaPrekoracenjaBrzine();
 		Double prekoracenje = $z.getOstvarenaBrzina() - 100.0;
 		b.setIznosPrekoracenja(prekoracenje);
+        b.setObradjena(false);
+
+        insert(b);
 		modify($z) { setPrekoracenjeBrzine(b) }
 end
 
@@ -35,6 +42,9 @@ rule "prekoracenje brzine za vozaca sa probnom dozvolom na motoputu"
 		KaznaPrekoracenjaBrzine b = new KaznaPrekoracenjaBrzine();
 		Double prekoracenje = $z.getOstvarenaBrzina() - 90.0;
 		b.setIznosPrekoracenja(prekoracenje);
+        b.setObradjena(false);
+
+        insert(b);
 		modify($z) { setPrekoracenjeBrzine(b) }
 end
 
@@ -47,5 +57,8 @@ salience -1
 		KaznaPrekoracenjaBrzine b = new KaznaPrekoracenjaBrzine();
 		Double prekoracenje = $z.getOstvarenaBrzina() - 0.9 * $z.getDozvoljenaBrzina();
 		b.setIznosPrekoracenja(prekoracenje);
+        b.setObradjena(false);
+
+        insert(b);
 		modify($z) { setPrekoracenjeBrzine(b) }
 end

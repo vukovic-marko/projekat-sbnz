@@ -10,5 +10,8 @@ salience 97
 	then
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();
 		k.setTip(KaznaVoznjaPodUticajem.TipVoznjePodUticajem.PSIHOAKTIVNA_SUPS);
+        k.setObradjena(false);
+
+        insert(k);
 		modify($z) { setVoznjaPodUticajem(k) }
 end
