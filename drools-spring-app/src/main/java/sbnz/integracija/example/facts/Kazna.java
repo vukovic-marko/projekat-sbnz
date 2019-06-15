@@ -15,6 +15,8 @@ public class Kazna {
 	private Clanovi clan;
 
 	private Boolean obradjena;
+	private Boolean dete1;
+	private Boolean dete2;
 	
 	public Kazna() {
 		
@@ -66,5 +68,21 @@ public class Kazna {
 
 	public void setObradjena(Boolean obradjena) {
 		this.obradjena = obradjena;
+	}
+
+	public Boolean getDete1() {
+		return dete1;
+	}
+
+	public void setDete1(Boolean dete1) {
+		this.dete1 = dete1;
+	}
+
+	public Boolean getDete2() {
+		return dete2;
+	}
+
+	public void setDete2(Boolean dete2) {
+		this.dete2 = dete2;
 	}
 }

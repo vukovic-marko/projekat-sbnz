@@ -30,6 +30,7 @@ public class Zapisnik {
 	private Boolean prisustvoPsihoaktivnihSupstanci;
 	private Boolean ometa;
 	private Boolean saobracajnaNesreca;
+	private Boolean prisutnoDete;
 	
 	// podaci o vozacu
 	private Vozac vozac;
@@ -146,6 +147,14 @@ public class Zapisnik {
 
 	public void setSaobracajnaNesreca(Boolean saobracajnaNesreca) {
 		this.saobracajnaNesreca = saobracajnaNesreca;
+	}
+
+	public Boolean getPrisutnoDete() {
+		return prisutnoDete;
+	}
+
+	public void setPrisutnoDete(Boolean prisutnoDete) {
+		this.prisutnoDete = prisutnoDete;
 	}
 
 	public String getId() {

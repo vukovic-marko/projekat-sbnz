@@ -1,0 +1,75 @@
+package sbnz.integracija
+
+import sbnz.integracija.example.facts.Zapisnik;
+import sbnz.integracija.example.facts.Kazna;
+import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
+import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
+import sbnz.integracija.example.facts.Vozac;
+
+rule "dodeljivanje 2 kaznena poena za izazivanje saobracajne nesrece prilikom prekoracenja brzine ako kaznom oni nisu dodeljeni"
+salience -20
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, saobracajnaNesreca == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, kazneniPoeni == null )
+    then
+        modify($v){ setKazneniPoeni(2) }
+end
+
+rule "dodeljivanje 2 kaznena poena za izazivanje saobracajne nesrece prilikom voznje pod uticajem ako kaznom oni nisu dodeljeni"
+salience -20
+    when
+        $z: Zapisnik( $voznja: voznjaPodUticajem, saobracajnaNesreca == true )
+        $v: KaznaVoznjaPodUticajem( this == $voznja, kazneniPoeni == null )
+    then
+        modify($v){ setKazneniPoeni(2) }
+end
+
+rule "uvecanje kaznenih poena prilikom prekoracenja brzine kada je u vozilu prisutno dete mladje od 12 godina"
+//no-loop true // TODO - proveri
+salience -21
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, prisutnoDete == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, dete1 != true )
+    then
+        Integer kazneniPoeni = $v.getKazneniPoeni();
+
+        System.out.println("uvecavam za 2 zbog deteta");
+
+        if (kazneniPoeni != null) {
+            modify($v){ setKazneniPoeni(kazneniPoeni + 2), setDete1(true) }
+        } else {
+            modify($v){ setKazneniPoeni(2), setDete1(true) }
+        }
+end
+
+rule "uvecanje kaznenih poena prilikom voznje pod uticajem kada je u vozilu prisutno dete mladje od 12 godina"
+//no-loop true // TODO - proveri
+salience -21
+    when
+        $z: Zapisnik( $voznja: voznjaPodUticajem, prisutnoDete == true )
+        $v: KaznaVoznjaPodUticajem( this == $voznja, dete1 != true )
+    then
+        Integer kazneniPoeni = $v.getKazneniPoeni();
+
+        System.out.println("uvecavam za 2 zbog deteta");
+
+        if (kazneniPoeni != null) {
+            modify($v){ setKazneniPoeni(kazneniPoeni + 2), setDete1(true) }
+        } else {
+            modify($v){ setKazneniPoeni(2), setDete1(true) }
+        }
+end
+
+rule "uvecanje zabrane upravljanja prilikom prekoracenja brzine kada je u vozilu prisutno dete"
+//no-loop true
+salience -22
+    when
+        $z: Zapisnik( $voznja: prekoracenjeBrzine, prisutnoDete == true )
+        $v: KaznaPrekoracenjaBrzine( this == $voznja, zabranaUpravljanja != null, dete2 != true )
+    then
+        Integer zabrana = $v.getZabranaUpravljanja();
+
+        System.out.println("uvecavam zabranu upravljanja");
+
+        modify($v){ setZabranaUpravljanja(zabrana + 2), setDete2(true) }
+end
