@@ -11,6 +11,8 @@ import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 import sbnz.integracija.example.facts.Vozac;
 import sbnz.integracija.example.facts.Zapisnik;
 
+import java.util.Arrays;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
@@ -67,7 +69,7 @@ public class TestUvecanjeKazneDete {
 
         assertThat(Kazna.Clanovi.CLAN_332a, is(zapisnik.getVoznjaPodUticajem().getClan()));
 
-        assertThat(new Double[] {15000.0, 30000.0}, is(zapisnik.getVoznjaPodUticajem().getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[] {15000.0, 30000.0}), is(zapisnik.getVoznjaPodUticajem().getNovcanaKazna()));
         assertThat(4, is(zapisnik.getVoznjaPodUticajem().getKazneniPoeni()));
         assertThat(true, is(zapisnik.getVoznjaPodUticajem().getObradjena()));
     }
@@ -108,7 +110,7 @@ public class TestUvecanjeKazneDete {
 
         assertThat(Kazna.Clanovi.CLAN_334, is(zapisnik.getPrekoracenjeBrzine().getClan()));
 
-        assertThat(new Double[] {5000.0, 15000.0}, is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[] {5000.0, 15000.0}), is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
         assertThat(4, is(zapisnik.getPrekoracenjeBrzine().getKazneniPoeni()));
         assertThat(true, is(zapisnik.getPrekoracenjeBrzine().getObradjena()));
     }

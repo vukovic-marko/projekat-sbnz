@@ -10,6 +10,8 @@ import sbnz.integracija.example.facts.Kazna;
 import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
 import sbnz.integracija.example.facts.Zapisnik;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -43,8 +45,8 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Integer[] {45, 60}, is(k.getZatvorskaKazna()));
-        assertThat(new Double[] {130000.0, 150000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Integer[] {45, 60}), is(k.getZatvorskaKazna()));
+        assertThat(Arrays.asList(new Double[] {130000.0, 150000.0}), is(k.getNovcanaKazna()));
         assertThat(17, is(k.getKazneniPoeni()));
         assertThat(11, is(k.getZabranaUpravljanja()));
         assertThat(true, is(k.getObradjena()));
@@ -64,8 +66,8 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Integer[] {30, 60}, is(k.getZatvorskaKazna()));
-        assertThat(new Double[] {120000.0, 140000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Integer[] {30, 60}), is(k.getZatvorskaKazna()));
+        assertThat(Arrays.asList(new Double[] {120000.0, 140000.0}), is(k.getNovcanaKazna()));
         assertThat(15, is(k.getKazneniPoeni()));
         assertThat(9, is(k.getZabranaUpravljanja()));
         assertThat(true, is(k.getObradjena()));
@@ -85,8 +87,8 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Integer[] {45}, is(k.getZatvorskaKazna()));
-        assertThat(new Double[] {120000.0, 150000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Integer[] {45}), is(k.getZatvorskaKazna()));
+        assertThat(Arrays.asList(new Double[] {120000.0, 150000.0}), is(k.getNovcanaKazna()));
         assertThat(16, is(k.getKazneniPoeni()));
         assertThat(9, is(k.getZabranaUpravljanja()));
         assertThat(true, is(k.getObradjena()));
@@ -106,8 +108,8 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Integer[] {15, 0}, is(k.getZatvorskaKazna()));
-        assertThat(new Double[] {100000.0, 120000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Integer[] {15, 0}), is(k.getZatvorskaKazna()));
+        assertThat(Arrays.asList(new Double[] {100000.0, 120000.0}), is(k.getNovcanaKazna()));
         assertThat(14, is(k.getKazneniPoeni()));
         assertThat(8, is(k.getZabranaUpravljanja()));
         assertThat(true, is(k.getObradjena()));
@@ -127,8 +129,8 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Integer[] {0, 60}, is(k.getZatvorskaKazna()));
-        assertThat(new Double[] {40000.0, 60000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Integer[] {0, 60}), is(k.getZatvorskaKazna()));
+        assertThat(Arrays.asList(new Double[] {40000.0, 60000.0}), is(k.getNovcanaKazna()));
         assertThat(3, is(k.getKazneniPoeni()));
         assertThat(true, is(k.getObradjena()));
     }
@@ -147,8 +149,8 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Integer[] {30}, is(k.getZatvorskaKazna()));
-        assertThat(new Double[] {20000.0, 40000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Integer[] {30}), is(k.getZatvorskaKazna()));
+        assertThat(Arrays.asList(new Double[] {20000.0, 40000.0}), is(k.getNovcanaKazna()));
         assertThat(true, is(k.getObradjena()));
     }
 
@@ -166,8 +168,8 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Integer[] {0, 45}, is(k.getZatvorskaKazna()));
-        assertThat(new Double[] {20000.0, 40000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Integer[] {0, 45}), is(k.getZatvorskaKazna()));
+        assertThat(Arrays.asList(new Double[] {20000.0, 40000.0}), is(k.getNovcanaKazna()));
         assertThat(true, is(k.getObradjena()));
     }
 
@@ -185,7 +187,7 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Double[] {10000.0, 20000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[] {10000.0, 20000.0}), is(k.getNovcanaKazna()));
         assertThat(true, is(k.getObradjena()));
     }
 
@@ -203,7 +205,7 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Double[] {6000.0, 18000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[] {6000.0, 18000.0}), is(k.getNovcanaKazna()));
         assertThat(true, is(k.getObradjena()));
     }
 
@@ -221,7 +223,7 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Double[] {5000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[] {5000.0}), is(k.getNovcanaKazna()));
         assertThat(true, is(k.getObradjena()));
     }
 
@@ -239,7 +241,7 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Double[] {5000.0, 15000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[] {5000.0, 15000.0}), is(k.getNovcanaKazna()));
         assertThat(true, is(k.getObradjena()));
     }
 
@@ -257,7 +259,7 @@ public class TestDefinisanjeKazniPrekoracenjeBrzine {
 
         kSession.fireAllRules();
 
-        assertThat(new Double[] {3000.0}, is(k.getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[] {3000.0}), is(k.getNovcanaKazna()));
         assertThat(true, is(k.getObradjena()));
     }
 }

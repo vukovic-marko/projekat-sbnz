@@ -11,6 +11,8 @@ import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 import sbnz.integracija.example.facts.Vozac;
 import sbnz.integracija.example.facts.Zapisnik;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
@@ -75,7 +77,7 @@ public class TestIntegracijaPravilaVoznjaPodUticajem {
         assertThat(3, is(zapisnik.getVoznjaPodUticajem().getZabranaUpravljanja()));
         assertThat(true, is(zapisnik.getVoznjaPodUticajem().getObradjena()));
 
-        assertThat(new Double[]{10000.0, 20000.0}, is(zapisnik.getVoznjaPodUticajem().getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[]{10000.0, 20000.0}), is(zapisnik.getVoznjaPodUticajem().getNovcanaKazna()));
         assertThat(true, is(zapisnik.getVoznjaPodUticajem().getObradjena()));
     }
 
@@ -121,8 +123,8 @@ public class TestIntegracijaPravilaVoznjaPodUticajem {
         assertThat(8, is(zapisnik.getVoznjaPodUticajem().getKazneniPoeni()));
         assertThat(6, is(zapisnik.getVoznjaPodUticajem().getZabranaUpravljanja()));
 
-        assertThat(new Integer[] {30}, is(zapisnik.getVoznjaPodUticajem().getZatvorskaKazna()));
-        assertThat(new Double[] {20000.0, 40000.0}, is(zapisnik.getVoznjaPodUticajem().getNovcanaKazna()));
+        assertThat(Arrays.asList(new Integer[] {30}), is(zapisnik.getVoznjaPodUticajem().getZatvorskaKazna()));
+        assertThat(Arrays.asList(new Double[] {20000.0, 40000.0}), is(zapisnik.getVoznjaPodUticajem().getNovcanaKazna()));
         assertThat(true, is(zapisnik.getVoznjaPodUticajem().getObradjena()));
     }
 
@@ -166,7 +168,7 @@ public class TestIntegracijaPravilaVoznjaPodUticajem {
 
         assertThat(Kazna.Clanovi.CLAN_332a, is(zapisnik.getVoznjaPodUticajem().getClan()));
 
-        assertThat(new Double[] {10000.0}, is(zapisnik.getVoznjaPodUticajem().getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[] {10000.0}), is(zapisnik.getVoznjaPodUticajem().getNovcanaKazna()));
         assertThat(true, is(zapisnik.getVoznjaPodUticajem().getObradjena()));
     }
 }

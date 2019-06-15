@@ -6,6 +6,12 @@ import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
 import sbnz.integracija.example.facts.Vozac;
 
+import java.util.List
+import java.util.ArrayList
+import java.lang.Integer
+import java.util.Arrays
+import java.lang.Double;
+
 rule "dodeljivanje 2 kaznena poena za izazivanje saobracajne nesrece prilikom prekoracenja brzine ako kaznom oni nisu dodeljeni"
 salience -20
     when
@@ -33,8 +39,6 @@ salience -21
     then
         Integer kazneniPoeni = $v.getKazneniPoeni();
 
-        System.out.println("uvecavam za 2 zbog deteta");
-
         if (kazneniPoeni != null) {
             modify($v){ setKazneniPoeni(kazneniPoeni + 2), setDete1(true) }
         } else {
@@ -51,8 +55,6 @@ salience -21
     then
         Integer kazneniPoeni = $v.getKazneniPoeni();
 
-        System.out.println("uvecavam za 2 zbog deteta");
-
         if (kazneniPoeni != null) {
             modify($v){ setKazneniPoeni(kazneniPoeni + 2), setDete1(true) }
         } else {
@@ -68,8 +70,15 @@ salience -22
         $v: KaznaPrekoracenjaBrzine( this == $voznja, zabranaUpravljanja != null, dete2 != true )
     then
         Integer zabrana = $v.getZabranaUpravljanja();
-
-        System.out.println("uvecavam zabranu upravljanja");
-
         modify($v){ setZabranaUpravljanja(zabrana + 2), setDete2(true) }
+end
+
+rule "izbor vece kazne za ometanje ovlascenog lica prilikom utvrdjivanja stepena alkoholisanosti"
+salience -23
+    when
+        $z: Zapisnik( $voznja: voznjaPodUticajem, ometa == true )
+        $v: KaznaVoznjaPodUticajem( this == $voznja, novcanaKazna != null, $n: novcanaKazna, novcanaKazna.size() == 2 )
+    then
+        Double d = (Double) $n.get(1);
+        modify($v){ setNovcanaKazna(new Double[] {d}) }
 end

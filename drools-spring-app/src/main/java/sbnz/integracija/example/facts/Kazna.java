@@ -1,5 +1,9 @@
 package sbnz.integracija.example.facts;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Kazna {
 
 	public enum Clanovi {
@@ -7,8 +11,8 @@ public class Kazna {
 		CLAN_332a, CLAN_333, CLAN_334
 	}
 	
-	private Integer[] zatvorskaKazna;
-	private Double[] novcanaKazna;
+	private List<Integer> zatvorskaKazna;
+	private List<Double> novcanaKazna;
 	private Integer kazneniPoeni;
 	private Integer zabranaUpravljanja;
 
@@ -30,20 +34,20 @@ public class Kazna {
 		this.clan = clan;
 	}
 
-	public Integer[] getZatvorskaKazna() {
+	public List<Integer> getZatvorskaKazna() {
 		return zatvorskaKazna;
 	}
 
 	public void setZatvorskaKazna(Integer[] zatvorskaKazna) {
-		this.zatvorskaKazna = zatvorskaKazna;
+		this.zatvorskaKazna = new ArrayList<Integer>(Arrays.asList(zatvorskaKazna));
 	}
 
-	public Double[] getNovcanaKazna() {
+	public List<Double> getNovcanaKazna() {
 		return novcanaKazna;
 	}
 
 	public void setNovcanaKazna(Double[] novcanaKazna) {
-		this.novcanaKazna = novcanaKazna;
+		this.novcanaKazna = new ArrayList<Double>(Arrays.asList(novcanaKazna));
 	}
 
 	public Integer getKazneniPoeni() {

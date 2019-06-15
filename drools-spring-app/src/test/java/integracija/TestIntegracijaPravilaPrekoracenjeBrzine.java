@@ -10,6 +10,8 @@ import sbnz.integracija.example.facts.Kazna;
 import sbnz.integracija.example.facts.Vozac;
 import sbnz.integracija.example.facts.Zapisnik;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
@@ -70,7 +72,7 @@ public class TestIntegracijaPravilaPrekoracenjeBrzine {
 
         assertThat(Kazna.Clanovi.CLAN_334, is(zapisnik.getPrekoracenjeBrzine().getClan()));
 
-        assertThat(new Double[]{3000.0}, is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[]{3000.0}), is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
         assertThat(true, is(zapisnik.getPrekoracenjeBrzine().getObradjena()));
     }
 
@@ -114,7 +116,7 @@ public class TestIntegracijaPravilaPrekoracenjeBrzine {
 
         assertThat(Kazna.Clanovi.CLAN_333, is(zapisnik.getPrekoracenjeBrzine().getClan()));
 
-        assertThat(new Double[]{5000.0}, is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[]{5000.0}), is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
         assertThat(true, is(zapisnik.getPrekoracenjeBrzine().getObradjena()));
     }
 
@@ -158,7 +160,7 @@ public class TestIntegracijaPravilaPrekoracenjeBrzine {
 
         assertThat(Kazna.Clanovi.CLAN_333, is(zapisnik.getPrekoracenjeBrzine().getClan()));
 
-        assertThat(new Double[]{5000.0}, is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[]{5000.0}), is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
         assertThat(true, is(zapisnik.getPrekoracenjeBrzine().getObradjena()));
     }
 
@@ -202,7 +204,7 @@ public class TestIntegracijaPravilaPrekoracenjeBrzine {
 
         assertThat(Kazna.Clanovi.CLAN_334, is(zapisnik.getPrekoracenjeBrzine().getClan()));
 
-        assertThat(new Double[]{3000.0}, is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
+        assertThat(Arrays.asList(new Double[]{3000.0}), is(zapisnik.getPrekoracenjeBrzine().getNovcanaKazna()));
         assertThat(true, is(zapisnik.getPrekoracenjeBrzine().getObradjena()));
     }
 }
