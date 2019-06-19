@@ -3,9 +3,10 @@
     <h1>Izmena pravila</h1>
     <div class="cm">
         <codemirror v-model="code" :options="cmOptions"></codemirror>
-        <button v-on:click="save" class="btn btn-primary">Sacuvaj izmene</button>
-        <button v-on:click="update" class="btn btn-primary">Osvezi projekat</button>
-
+        <div class="btns">
+            <button v-on:click="save" class="btn btn-primary">Sacuvaj izmene</button>
+            <button v-on:click="update" class="btn btn-primary">Osvezi projekat</button>
+        </div>
     </div>
   </div>
 </template>
@@ -46,7 +47,7 @@ export default {
                 type: "text/plain;charset=utf-8"
             });
 
-            var fileNameToSaveAs = "myfile.txt";
+            var fileNameToSaveAs = "pravilo.drl";
 
             var downloadLink = document.createElement("a");
             downloadLink.download = fileNameToSaveAs;
@@ -89,5 +90,12 @@ export default {
 }
 .about {
   height: 100%;
+}
+button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.btns {
+    text-align: center;
 }
 </style>
