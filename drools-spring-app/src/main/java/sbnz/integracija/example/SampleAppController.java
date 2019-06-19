@@ -1,5 +1,6 @@
 package sbnz.integracija.example;
 
+import org.apache.maven.shared.invoker.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import sbnz.integracija.example.facts.Vozac;
 import sbnz.integracija.example.facts.Zapisnik;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 //import sbnz.integracija.example.facts.Item;
@@ -93,5 +97,21 @@ public class SampleAppController {
 	public String hi() {
 		return "hi!";
 	}
-	
+
+	@GetMapping("/maven")
+	public void maven() {
+		File pom = new File("drools-spring-kjar/pom.xml");
+
+		InvocationRequest request = new DefaultInvocationRequest();
+		request.setPomFile(pom);
+		request.setGoals(new ArrayList<String>() {{ add("clean"); add("install"); }});
+
+		Invoker invoker = new DefaultInvoker();
+		invoker.setMavenHome(new File("/opt/maven")); // TODO vidi sta s ovim
+		try {
+			invoker.execute(request);
+		} catch (MavenInvocationException e) {
+			e.printStackTrace();
+		}
+	}
 }

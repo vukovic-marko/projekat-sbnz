@@ -1,0 +1,93 @@
+<template>
+  <div class="about">
+    <h1>Izmena pravila</h1>
+    <div class="cm">
+        <codemirror v-model="code" :options="cmOptions"></codemirror>
+        <button v-on:click="save" class="btn btn-primary">Sacuvaj izmene</button>
+        <button v-on:click="update" class="btn btn-primary">Osvezi projekat</button>
+
+    </div>
+  </div>
+</template>
+
+<script>
+// require component
+import { codemirror } from 'vue-codemirror'
+import axios from 'axios';
+
+
+// require styles
+import 'codemirror/lib/codemirror.css'
+
+export default {
+  data() {
+    return {
+      code: '',
+      cmOptions: {
+        // codemirror options
+        tabSize: 4,
+        mode: 'text/plain',
+        theme: 'base16-dark',
+        lineNumbers: true,
+        line: true
+      }
+    }
+  },
+  components: {
+    codemirror
+  },
+  methods: {
+      save: function(e) {
+          e.preventDefault();
+          
+          
+            var textToWrite = this.$data.code;
+            var textFileAsBlob = new Blob([textToWrite], {
+                type: "text/plain;charset=utf-8"
+            });
+
+            var fileNameToSaveAs = "myfile.txt";
+
+            var downloadLink = document.createElement("a");
+            downloadLink.download = fileNameToSaveAs;
+            downloadLink.innerHTML = "Download File";
+            if (window.webkitURL != null) {
+                // Chrome allows the link to be clicked
+                // without actually adding it to the DOM.
+                downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+            } else {
+                // Firefox requires the link to be added to the DOM
+                // before it can be clicked.
+                downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                // downloadLink.onclick = destroyClickedElement;
+                downloadLink.style.display = "none";
+                document.body.appendChild(downloadLink);
+            }
+
+            downloadLink.click();
+      },
+      update: function(e) {
+        e.preventDefault();
+
+        axios.get('http://localhost:8080/maven')
+        .then(response => {
+          alert('Projekat uspesno osvezen!');
+        })
+        .catch(e => {
+          alert('Neuspesno osvezavanje projekta!');
+        })
+        
+      }
+  }
+}
+</script>
+
+<style scoped>
+.cm  { 
+  text-align:left;
+  height: 100px;
+}
+.about {
+  height: 100%;
+}
+</style>
