@@ -4,7 +4,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
+import org.kie.api.conf.EventProcessingOption;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import sbnz.integracija.example.facts.Kazna;
@@ -20,9 +22,13 @@ public class TestOdredjivanjeKazneZonaUsporenogSaobracaja {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        KieServices ks = KieServices.Factory.get();
-        KieContainer kContainer = ks.getKieClasspathContainer();
-        kSession = kContainer.newKieSession();
+		KieServices ks = KieServices.Factory.get();
+		KieContainer kContainer = ks.getKieClasspathContainer();
+		
+	    KieBaseConfiguration config = ks.newKieBaseConfiguration();
+	    config.setOption(EventProcessingOption.STREAM);
+		
+		kSession = kContainer.newKieBase(config).newKieSession();
     }
 
     @AfterClass
