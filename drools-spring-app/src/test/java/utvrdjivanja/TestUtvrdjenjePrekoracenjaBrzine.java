@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.kie.api.KieServices;
@@ -29,9 +30,14 @@ public class TestUtvrdjenjePrekoracenjaBrzine {
 		kSession.dispose();
 	}
 
+	@Before
+	public void setUpBefore() throws Exception {
+		kSession.getAgenda().getAgendaGroup("modul1").setFocus();
+	}
+
 	@Test
 	public void testirajTrajnuDozvolu() {
-		
+
 		Zapisnik z = new Zapisnik();
 		Vozac v = new Vozac();
 		v.setTipDozvole(Vozac.TipDozvole.TRAJNA);
@@ -60,7 +66,7 @@ public class TestUtvrdjenjePrekoracenjaBrzine {
 	
 	@Test
 	public void testirajProbnuDozvolu() {
-		
+
 		Zapisnik z = new Zapisnik();
 		Vozac v = new Vozac();
 		v.setTipDozvole(Vozac.TipDozvole.PROBNA);

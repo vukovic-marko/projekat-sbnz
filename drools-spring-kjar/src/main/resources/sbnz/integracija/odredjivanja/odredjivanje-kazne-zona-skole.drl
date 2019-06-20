@@ -6,6 +6,7 @@ import sbnz.integracija.example.facts.Kazna;
 import java.time.LocalTime;
 
 rule "prekoracenje vece od 60 km/h u zoni skole"
+agenda-group "modul1"
 salience 19
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_SKOLE, vreme != null, vreme.isAfter(LocalTime.parse("06:59:59")), vreme.isBefore(LocalTime.parse("21:00:01")) )
@@ -15,6 +16,7 @@ salience 19
 end
 
 rule "prekoracenje od 51 do 60 km/h u zoni skole"
+agenda-group "modul1"
 salience 18
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_SKOLE, vreme != null, vreme.isAfter(LocalTime.parse("06:59:59")), vreme.isBefore(LocalTime.parse("21:00:01")) )
@@ -28,6 +30,7 @@ salience 18
 end
 
 rule "prekoracenje od 31 do 50 km/h u zoni skole"
+agenda-group "modul1"
 salience 17
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_SKOLE, vreme != null, vreme.isAfter(LocalTime.parse("06:59:59")), vreme.isBefore(LocalTime.parse("21:00:01")) )
@@ -41,6 +44,7 @@ salience 17
 end
 
 rule "prekoracenje od 21 do 30 km/h u zoni skole"
+agenda-group "modul1"
 salience 16
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_SKOLE, vreme != null, vreme.isAfter(LocalTime.parse("06:59:59")), vreme.isBefore(LocalTime.parse("21:00:01")) )
@@ -50,6 +54,7 @@ salience 16
 end
 
 rule "prekoracenje od 11 do 20 km/h u zoni skole"
+agenda-group "modul1"
 salience 15
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_SKOLE, vreme != null, vreme.isAfter(LocalTime.parse("06:59:59")), vreme.isBefore(LocalTime.parse("21:00:01")) )
@@ -59,6 +64,7 @@ salience 15
 end
 
 rule "prekoracenje do 10 km/h u zoni skole"
+agenda-group "modul1"
 salience 14
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_SKOLE, vreme != null, vreme.isAfter(LocalTime.parse("06:59:59")), vreme.isBefore(LocalTime.parse("21:00:01")) )

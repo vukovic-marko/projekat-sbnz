@@ -7,6 +7,7 @@ import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
 import sbnz.integracija.example.facts.Vozac;
 
 rule "kazna za nasilnicku voznju po clanu 329 uz izazivanje saobracajne nesrece"
+agenda-group "modul1"
 salience -10
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, saobracajnaNesreca == true )
@@ -22,6 +23,7 @@ salience -10
 end
 
 rule "kazna za nasilnicku voznju po clanu 329"
+agenda-group "modul1"
 salience -11
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem )
@@ -37,6 +39,7 @@ salience -11
 end
 
 rule "kazna za voznju pod uticajem po clanu 330 uz izazivanje saobracajne nesrece"
+agenda-group "modul1"
 salience -10
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, saobracajnaNesreca == true )
@@ -52,6 +55,7 @@ salience -10
 end
 
 rule "kazna za voznju pod uticajem po clanu 330"
+agenda-group "modul1"
 salience -11
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem )
@@ -67,6 +71,7 @@ salience -11
 end
 
 rule "kazna za voznju pod uticajem po clanu 331 uz izazivanje saobracajne nesrece"
+agenda-group "modul1"
 salience -10
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, saobracajnaNesreca == true )
@@ -85,6 +90,7 @@ salience -10
 end
 
 rule "kazna za voznju pod uticajem po clanu 331"
+agenda-group "modul1"
 salience -11
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem )
@@ -98,6 +104,7 @@ salience -11
 end
 
 rule "kazna za voznju pod uticajem po clanu 332 uz izazivanje saobracajne nesrece"
+agenda-group "modul1"
 salience -10
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, saobracajnaNesreca == true )
@@ -111,6 +118,7 @@ salience -10
 end
 
 rule "kazna za voznju pod uticajem po clanu 332"
+agenda-group "modul1"
 salience -11
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem )
@@ -123,6 +131,7 @@ salience -11
 end
 
 rule "kazna za voznju pod uticajem po clanu 332a uz izazivanje saobracajne nesrece"
+agenda-group "modul1"
 salience -10
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, saobracajnaNesreca == true )
@@ -135,6 +144,7 @@ salience -10
 end
 
 rule "kazna za voznju pod uticajem po clanu 332a"
+agenda-group "modul1"
 salience -11
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem )
@@ -147,6 +157,7 @@ salience -11
 end
 
 rule "kazna za voznju pod uticajem po clanu 333 uz izazivanje saobracajne nesrece"
+agenda-group "modul1"
 salience -10
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, saobracajnaNesreca == true )
@@ -159,6 +170,7 @@ salience -10
 end
 
 rule "kazna za voznju pod uticajem po clanu 333"
+agenda-group "modul1"
 salience -11
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem )
@@ -171,6 +183,7 @@ salience -11
 end
 
 rule "kazna za voznju pod uticajem po clanu 334 uz izazivanje saobracajne nesrece"
+agenda-group "modul1"
 salience -10
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, saobracajnaNesreca == true )
@@ -183,6 +196,7 @@ salience -10
 end
 
 rule "kazna za voznju pod uticajem po clanu 334"
+agenda-group "modul1"
 salience -11
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem )

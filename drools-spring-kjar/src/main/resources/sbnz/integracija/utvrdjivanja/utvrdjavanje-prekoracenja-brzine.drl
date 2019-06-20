@@ -7,7 +7,8 @@ import sbnz.integracija.example.facts.Vozac;
 
 
 rule "prekoracenje brzine za vozaca sa trajnom dozvolom"
-	when 
+agenda-group "modul1"
+	when
 		$z: Zapisnik( $vozac: vozac, ostvarenaBrzina > dozvoljenaBrzina, prekoracenjeBrzine == null )
 		$v: Vozac( this == $vozac, tipDozvole == Vozac.TipDozvole.TRAJNA )
 	then
@@ -22,7 +23,8 @@ rule "prekoracenje brzine za vozaca sa trajnom dozvolom"
 end
 
 rule "prekoracenje brzine za vozaca sa probnom dozvolom na autoputu"
-	when 
+agenda-group "modul1"
+	when
 		$z: Zapisnik( $vozac: vozac, dozvoljenaBrzina == 130.0, ostvarenaBrzina > 100.0, prekoracenjeBrzine == null )
 		$v: Vozac( this == $vozac, tipDozvole == Vozac.TipDozvole.PROBNA )
 	then
@@ -37,7 +39,8 @@ rule "prekoracenje brzine za vozaca sa probnom dozvolom na autoputu"
 end
 
 rule "prekoracenje brzine za vozaca sa probnom dozvolom na motoputu"
-	when 
+agenda-group "modul1"
+	when
 		$z: Zapisnik( $vozac: vozac, dozvoljenaBrzina == 100.0, ostvarenaBrzina > 90.0, prekoracenjeBrzine == null )
 		$v: Vozac( this == $vozac, tipDozvole == Vozac.TipDozvole.PROBNA )
 	then
@@ -52,6 +55,7 @@ rule "prekoracenje brzine za vozaca sa probnom dozvolom na motoputu"
 end
 
 rule "prekoracenje brzine za vozaca sa probnom dozvolom na ostalim putevima"
+agenda-group "modul1"
 salience -1
 	when 
 		$z: Zapisnik( $vozac: vozac, prekoracenjeBrzine == null, dozvoljenaBrzina != null, ostvarenaBrzina!= null, ostvarenaBrzina > 0.9 * dozvoljenaBrzina )

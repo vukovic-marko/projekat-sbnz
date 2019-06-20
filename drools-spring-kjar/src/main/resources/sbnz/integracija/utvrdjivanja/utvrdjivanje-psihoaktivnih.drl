@@ -4,8 +4,9 @@ import sbnz.integracija.example.facts.Zapisnik;
 import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 
 rule "pod uticajem psihoaktivnih supstanci"
+agenda-group "modul1"
 salience 97
-	when 
+	when
 		$z: Zapisnik( prisustvoPsihoaktivnihSupstanci == true, voznjaPodUticajem == null )
 	then
 		KaznaVoznjaPodUticajem k = new KaznaVoznjaPodUticajem();

@@ -6,7 +6,8 @@ import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 import sbnz.integracija.example.facts.Vozac;
 
 rule "kazna za potpunu alkoholisanost"
-	when 
+agenda-group "modul1"
+	when
 		$z: Zapisnik( $voznja: voznjaPodUticajem )
 		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.POTPUNA_ALK, clan == null )
 	then
@@ -14,6 +15,7 @@ rule "kazna za potpunu alkoholisanost"
 end
 
 rule "kazna za veoma tesku alkoholisanost"
+agenda-group "modul1"
 	when
 		$z: Zapisnik( $voznja: voznjaPodUticajem )
 		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VEOMA_TESKA_ALK, clan == null )
@@ -22,6 +24,7 @@ rule "kazna za veoma tesku alkoholisanost"
 end
 
 rule "kazna za tesku alkoholisanost"
+agenda-group "modul1"
 	when
 		$z: Zapisnik( $voznja: voznjaPodUticajem )
 		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.TESKA_ALK, clan == null )
@@ -30,6 +33,7 @@ rule "kazna za tesku alkoholisanost"
 end
 
 rule "kazna za voznju pod uticajem psihoaktivnih supstanci"
+agenda-group "modul1"
 	when
 		$z: Zapisnik( $voznja: voznjaPodUticajem )
 		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.PSIHOAKTIVNA_SUPS, clan == null )
@@ -42,6 +46,7 @@ rule "kazna za voznju pod uticajem psihoaktivnih supstanci"
 end
 
 rule "kazna za visoku alkoholisanost"
+agenda-group "modul1"
 	when
 		$z: Zapisnik( $voznja: voznjaPodUticajem )
 		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.VISOKA_ALK, clan == null )
@@ -54,6 +59,7 @@ rule "kazna za visoku alkoholisanost"
 end
 
 rule "kazna za srednju alkoholisanost"
+agenda-group "modul1"
 	when
 		$z: Zapisnik( $voznja: voznjaPodUticajem )
 		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.SREDNJA_ALK, clan == null )
@@ -66,6 +72,7 @@ rule "kazna za srednju alkoholisanost"
 end
 
 rule "kazna za umerenu alkoholisanost"
+agenda-group "modul1"
 	when
 		$z: Zapisnik( $voznja: voznjaPodUticajem )
 		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.UMERENA_ALK, clan == null )
@@ -75,6 +82,7 @@ end
 
 
 rule "kazna za blagu alkoholisanost"
+agenda-group "modul1"
 	when
 		$z: Zapisnik( $voznja: voznjaPodUticajem, $vozac: vozac )
 		$v: KaznaVoznjaPodUticajem( this == $voznja, tip == KaznaVoznjaPodUticajem.TipVoznjePodUticajem.BLAGA_ALK, clan == null )

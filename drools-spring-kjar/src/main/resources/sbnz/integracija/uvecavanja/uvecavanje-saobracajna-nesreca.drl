@@ -13,6 +13,7 @@ import java.util.Arrays
 import java.lang.Double;
 
 rule "dodeljivanje 2 kaznena poena za izazivanje saobracajne nesrece prilikom prekoracenja brzine ako kaznom oni nisu dodeljeni"
+agenda-group "modul1"
 salience -20
     when
         $z: Zapisnik( $voznja: prekoracenjeBrzine, saobracajnaNesreca == true )
@@ -22,6 +23,7 @@ salience -20
 end
 
 rule "dodeljivanje 2 kaznena poena za izazivanje saobracajne nesrece prilikom voznje pod uticajem ako kaznom oni nisu dodeljeni"
+agenda-group "modul1"
 salience -20
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, saobracajnaNesreca == true )
@@ -32,6 +34,7 @@ end
 
 rule "uvecanje kaznenih poena prilikom prekoracenja brzine kada je u vozilu prisutno dete mladje od 12 godina"
 //no-loop true // TODO - proveri
+agenda-group "modul1"
 salience -21
     when
         $z: Zapisnik( $voznja: prekoracenjeBrzine, prisutnoDete == true )
@@ -48,6 +51,7 @@ end
 
 rule "uvecanje kaznenih poena prilikom voznje pod uticajem kada je u vozilu prisutno dete mladje od 12 godina"
 //no-loop true // TODO - proveri
+agenda-group "modul1"
 salience -21
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, prisutnoDete == true )
@@ -64,6 +68,7 @@ end
 
 rule "uvecanje zabrane upravljanja prilikom prekoracenja brzine kada je u vozilu prisutno dete"
 //no-loop true
+agenda-group "modul1"
 salience -22
     when
         $z: Zapisnik( $voznja: prekoracenjeBrzine, prisutnoDete == true )
@@ -74,6 +79,7 @@ salience -22
 end
 
 rule "izbor vece kazne za ometanje ovlascenog lica prilikom utvrdjivanja stepena alkoholisanosti"
+agenda-group "modul1"
 salience -23
     when
         $z: Zapisnik( $voznja: voznjaPodUticajem, ometa == true )

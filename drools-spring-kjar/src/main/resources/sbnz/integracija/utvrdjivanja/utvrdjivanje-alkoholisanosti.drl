@@ -4,6 +4,7 @@ import sbnz.integracija.example.facts.Zapisnik;
 import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 
 rule "blaga alkoholisanost"
+agenda-group "modul1"
 salience 94
 	when 
 		$z: Zapisnik( $prisustvo : prisustvoAlkohola > 0.0, voznjaPodUticajem == null )
@@ -18,6 +19,7 @@ salience 94
 end
 
 rule "umerena alkoholisanost"
+agenda-group "modul1"
 salience 95
 	when 
 		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 0.2, voznjaPodUticajem == null )
@@ -32,6 +34,7 @@ salience 95
 end
 
 rule "srednja alkoholisanost"
+agenda-group "modul1"
 salience 96
 	when 
 		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 0.5, voznjaPodUticajem == null )
@@ -46,6 +49,7 @@ salience 96
 end
 
 rule "visoka alkoholisanost"
+agenda-group "modul1"
 salience 97
 	when 
 		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 0.8, voznjaPodUticajem == null )
@@ -60,6 +64,7 @@ salience 97
 end
 
 rule "teska alkoholisanost"
+agenda-group "modul1"
 salience 98
 	when 
 		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 1.2, voznjaPodUticajem == null )
@@ -74,6 +79,7 @@ salience 98
 end
 
 rule "veoma teska alkoholisanost"
+agenda-group "modul1"
 salience 99
 	when 
 		$z: Zapisnik( $prisustvo : prisustvoAlkohola >= 1.6, voznjaPodUticajem == null )
@@ -88,6 +94,7 @@ salience 99
 end
 
 rule "potpuna alkoholisanost"
+agenda-group "modul1"
 salience 100
 	when 
 		$z: Zapisnik( $prisustvo : prisustvoAlkohola > 2.0, voznjaPodUticajem == null )

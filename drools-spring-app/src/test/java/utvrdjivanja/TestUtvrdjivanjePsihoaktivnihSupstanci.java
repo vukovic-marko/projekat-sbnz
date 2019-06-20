@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.kie.api.KieServices;
@@ -29,9 +30,14 @@ public class TestUtvrdjivanjePsihoaktivnihSupstanci {
 		kSession.dispose();
 	}
 
+	@Before
+	public void setUpBefore() throws Exception {
+		kSession.getAgenda().getAgendaGroup("modul1").setFocus();
+	}
+
 	@Test
 	public void testPsihoaktivneSupstance() {
-		
+
 		Zapisnik z = new Zapisnik();
 		z.setPrisustvoPsihoaktivnihSupstanci(true);
 		kSession.insert(z);
@@ -44,7 +50,7 @@ public class TestUtvrdjivanjePsihoaktivnihSupstanci {
 	
 	@Test
 	public void testPrioritetAlkoholisanosti() {
-		
+
 		Zapisnik z = new Zapisnik();
 		z.setPrisustvoAlkohola(2.1);
 		z.setPrisustvoPsihoaktivnihSupstanci(true);
@@ -69,6 +75,7 @@ public class TestUtvrdjivanjePsihoaktivnihSupstanci {
 	
 	@Test
 	public void testRavnopravnosti() {
+
 		Zapisnik z = new Zapisnik();
 		z.setPrisustvoAlkohola(1.0);
 		z.setPrisustvoPsihoaktivnihSupstanci(true);
@@ -84,7 +91,7 @@ public class TestUtvrdjivanjePsihoaktivnihSupstanci {
 	
 	@Test
 	public void testPrioritetPsihoaktivnihSupstanci() {
-		
+
 		Zapisnik z = new Zapisnik();
 		z.setPrisustvoAlkohola(0.5);
 		z.setPrisustvoPsihoaktivnihSupstanci(true);
@@ -109,6 +116,7 @@ public class TestUtvrdjivanjePsihoaktivnihSupstanci {
 	
 	@Test
 	public void testNedetetektovanja() {
+
 		Zapisnik z = new Zapisnik();
 		kSession.insert(z);
 		

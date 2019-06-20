@@ -5,6 +5,7 @@ import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
 import sbnz.integracija.example.facts.Kazna;
 
 rule "prekoracenje vece od 50 km/h u zoni usporenog saobracaja"
+agenda-group "modul1"
     salience 19
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_USPORENOG_SAOBRACAJA )
@@ -14,6 +15,7 @@ rule "prekoracenje vece od 50 km/h u zoni usporenog saobracaja"
 end
 
 rule "prekoracenje od 31 do 50 km/h u zoni usporenog saobracaja"
+agenda-group "modul1"
 salience 18
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_USPORENOG_SAOBRACAJA )
@@ -27,6 +29,7 @@ salience 18
 end
 
 rule "prekoracenje od 10 do 30 km/h u zoni usporenog saobracaja"
+agenda-group "modul1"
 salience 17
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_USPORENOG_SAOBRACAJA )
@@ -39,6 +42,7 @@ salience 17
 end
 
 rule "prekoracenje do 10 km/h u zoni usporenog saobracaja"
+agenda-group "modul1"
 salience 16
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, zona == Zapisnik.Zona.ZONA_USPORENOG_SAOBRACAJA )

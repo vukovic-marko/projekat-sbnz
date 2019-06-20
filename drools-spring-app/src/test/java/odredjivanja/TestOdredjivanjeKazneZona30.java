@@ -1,6 +1,7 @@
 package odredjivanja;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.kie.api.KieServices;
@@ -27,6 +28,11 @@ public class TestOdredjivanjeKazneZona30 {
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
         kSession.dispose();
+    }
+
+    @Before
+    public void setUpBefore() throws Exception {
+        kSession.getAgenda().getAgendaGroup("modul1").setFocus();
     }
 
     @Test

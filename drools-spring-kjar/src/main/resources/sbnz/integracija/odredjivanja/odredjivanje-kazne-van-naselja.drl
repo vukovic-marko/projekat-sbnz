@@ -5,6 +5,7 @@ import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
 import sbnz.integracija.example.facts.Kazna;
 
 rule "kazna za nasilnicku voznju"
+agenda-group "modul1"
 salience 20
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
@@ -14,6 +15,7 @@ salience 20
 end
 
 rule "prekoracenje od 81 do 100 km/h"
+agenda-group "modul1"
 salience -1
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
@@ -23,6 +25,7 @@ salience -1
 end
 
 rule "prekoracenje od 61 do 80 km/h"
+agenda-group "modul1"
 salience -2
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
@@ -36,6 +39,7 @@ salience -2
 end
 
 rule "prekoracenje od 41 do 60 km/h"
+agenda-group "modul1"
 salience -3
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
@@ -49,6 +53,7 @@ salience -3
 end
 
 rule "prekoracenje od 21 do 40 km/h"
+agenda-group "modul1"
 salience -4
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
@@ -58,6 +63,7 @@ salience -4
 end
 
 rule "prekoracenje od 11 do 20 km/h"
+agenda-group "modul1"
 salience -5
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
@@ -67,6 +73,7 @@ salience -5
 end
 
 rule "prekoracenje do 10 km/h"
+agenda-group "modul1"
 salience -6
     when
         $z: Zapisnik( $kazna: prekoracenjeBrzine, naseljenoMesto == false )
