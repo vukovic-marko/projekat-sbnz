@@ -1,0 +1,38 @@
+package sbnz.integracija
+
+import sbnz.integracija.example.events.ProlazakKrozCrvenoSvetlo;
+import sbnz.integracija.example.events.NasilnickaVoznja;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+
+global List lista;
+
+rule "log event"
+agenda-group "modul2"
+    when
+		ProlazakKrozCrvenoSvetlo( $tablice: tablice, $time: executionTime )
+    then
+        System.err.println("log");
+        System.err.println($time);
+        System.err.println($tablice);
+        System.out.println("");
+end
+
+rule "count events"
+agenda-group "modul2"
+    when
+        $p: ProlazakKrozCrvenoSvetlo( $tablice: tablice )
+        $l: List( size >= 1) from accumulate(
+            ProlazakKrozCrvenoSvetlo( this before $p, tablice == $tablice, $timestamp: executionTime ) over window:time( 10m ),
+            collectList($timestamp)
+       )
+    then
+        System.err.println("nasilnicka voznja");
+        List<Date> dates = new ArrayList($l);
+        dates.add($p.getExecutionTime());
+        //lista.add($l.get(0));
+        NasilnickaVoznja n = new NasilnickaVoznja(dates, $tablice);
+        lista.add(n);
+
+end
