@@ -2,11 +2,15 @@ package sbnz.integracija
 
 import sbnz.integracija.example.events.ProlazakKrozCrvenoSvetlo;
 import sbnz.integracija.example.events.NasilnickaVoznja;
+import sbnz.integracija.example.events.PreticanjePrekoPuneLinije;
+
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
 global List lista;
+global List pravilo2;
+global List pravilo3;
 
 rule "log event"
 agenda-group "modul2"
@@ -19,7 +23,7 @@ agenda-group "modul2"
         System.out.println("");
 end
 
-rule "count events"
+rule "prolazak kroz crveno svetlo 2 ili vise puta u roku od 10 minuta"
 agenda-group "modul2"
     when
         $p: ProlazakKrozCrvenoSvetlo( $tablice: tablice )
@@ -35,4 +39,36 @@ agenda-group "modul2"
         NasilnickaVoznja n = new NasilnickaVoznja(dates, $tablice);
         lista.add(n);
 
+end
+
+rule "prolazak kroz crveno svetlo 3 ili vise puta u roku od 1 sata"
+agenda-group "modul2"
+    when
+        $p: ProlazakKrozCrvenoSvetlo( $tablice: tablice )
+        $l: List( size >= 2) from accumulate(
+            ProlazakKrozCrvenoSvetlo( this before $p, tablice == $tablice, $timestamp: executionTime ) over window:time( 1h ),
+            collectList($timestamp)
+       )
+    then
+        System.err.println("nasilnicka voznja 2");
+        List<Date> dates = new ArrayList($l);
+        dates.add($p.getExecutionTime());
+        //lista.add($l.get(0));
+        NasilnickaVoznja n = new NasilnickaVoznja(dates, $tablice);
+        pravilo2.add(n);
+
+end
+
+rule "preticanje preko neisprekidane linije"
+agenda-group "modul2"
+    when
+		PreticanjePrekoPuneLinije( $tablice: tablice, $time: executionTime )
+    then
+        System.err.println("*");
+        System.err.println("preticanje preko pune linije - nasilnicka voznja");
+        System.err.println($time);
+        System.err.println($tablice);
+        System.out.println("");
+        NasilnickaVoznja n = new NasilnickaVoznja(new ArrayList<Date>() {{ add($time); }}, $tablice);
+        pravilo3.add(n);
 end
