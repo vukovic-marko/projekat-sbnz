@@ -41,6 +41,8 @@ public class Zapisnik {
 	// podaci o prekrasju voznje pod uticajem
 	private KaznaVoznjaPodUticajem voznjaPodUticajem;
 	
+	private Integer kaznenihPoenaUkupno;
+	
 	public Zapisnik() {
 		
 	}
@@ -171,5 +173,13 @@ public class Zapisnik {
 
 	public void setUlica(String ulica) {
 		this.ulica = ulica;
+	}
+	
+	public Integer getKaznenihPoenaUkupno() {
+		return kaznenihPoenaUkupno;
+	}
+	
+	public void setKaznenihPoenaUkupno(Integer kaznenihPoenaUkupno) {
+		this.kaznenihPoenaUkupno = kaznenihPoenaUkupno;
 	}
 }

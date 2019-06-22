@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import sbnz.integracija.example.dto.ZapisnikDTO;
 import sbnz.integracija.example.facts.Vozac;
 import sbnz.integracija.example.facts.Zapisnik;
 
@@ -64,28 +66,29 @@ public class SampleAppController {
 	}
 
 	@PostMapping("/zapisnik")
-	public ResponseEntity<Zapisnik> sendZapisnik(@RequestBody Zapisnik zapisnik) {
-		System.out.println("***");
-		System.out.println("ime: " + zapisnik.getVozac().getIme());
-		System.out.println("prezime: " + zapisnik.getVozac().getPrezime());
-		System.out.println("jmbg: " + zapisnik.getVozac().getJmbg());
-		System.out.println("broj dozvole: " + zapisnik.getVozac().getBrojDozvole());
-		System.out.println("tip dozvole: " + zapisnik.getVozac().getTipDozvole());
-
-		System.out.println("ulica: " + zapisnik.getUlica());
-		System.out.println("naseljeno mesto: " + zapisnik.getNaseljenoMesto());
-		System.out.println("zona: " + zapisnik.getZona());
-		System.out.println("ostvarena brzina: " + zapisnik.getOstvarenaBrzina());
-		System.out.println("dozvoljena brzina: " + zapisnik.getDozvoljenaBrzina());
-		System.out.println("kolicina alkohola: " + zapisnik.getPrisustvoAlkohola());
-		System.out.println("psihoaktivne sups: " + zapisnik.getPrisustvoPsihoaktivnihSupstanci());
-		System.out.println("saobracajna nesreca: " + zapisnik.getSaobracajnaNesreca());
-		System.out.println("ometa: " + zapisnik.getOmeta());
+	public ResponseEntity<ZapisnikDTO> sendZapisnik(@RequestBody Zapisnik zapisnik) {
+//		System.out.println("***");
+//		System.out.println("ime: " + zapisnik.getVozac().getIme());
+//		System.out.println("prezime: " + zapisnik.getVozac().getPrezime());
+//		System.out.println("jmbg: " + zapisnik.getVozac().getJmbg());
+//		System.out.println("broj dozvole: " + zapisnik.getVozac().getBrojDozvole());
+//		System.out.println("tip dozvole: " + zapisnik.getVozac().getTipDozvole());
+//
+//		System.out.println("ulica: " + zapisnik.getUlica());
+//		System.out.println("naseljeno mesto: " + zapisnik.getNaseljenoMesto());
+//		System.out.println("zona: " + zapisnik.getZona());
+//		System.out.println("ostvarena brzina: " + zapisnik.getOstvarenaBrzina());
+//		System.out.println("dozvoljena brzina: " + zapisnik.getDozvoljenaBrzina());
+//		System.out.println("kolicina alkohola: " + zapisnik.getPrisustvoAlkohola());
+//		System.out.println("psihoaktivne sups: " + zapisnik.getPrisustvoPsihoaktivnihSupstanci());
+//		System.out.println("saobracajna nesreca: " + zapisnik.getSaobracajnaNesreca());
+//		System.out.println("ometa: " + zapisnik.getOmeta());
+//		System.out.println("prisutno dete: " + zapisnik.getPrisutnoDete());
 
 
 		//return ResponseEntity.ok(sampleAppRepository.save(zapisnik));
 		return ResponseEntity.ok(sampleService.obradiZapisnik(zapisnik));
-
+//		return ResponseEntity.ok().build();
 	}
 
 	@GetMapping("/zapisnik")

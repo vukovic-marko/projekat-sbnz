@@ -82,10 +82,37 @@
           <input type="checkbox" class="form-check-input" id="ometaPrekrsaj" v-model="zapisnik.ometa">
           <label for="ometaPrekrsaj" class="form-check-label">&nbsp;ometa službeno lice</label>
         </div>
+        <div class="form-group col-md-8">
+          <input type="checkbox" class="form-check-input" id="detePrekrsaj" v-model="zapisnik.prisutnoDete">
+          <label for="detePrekrsaj" class="form-check-label">&nbsp;prisutno dete mlađe od 12 godina</label>
+        </div>
         <!-- </div> -->
       </div>
       <button type="submit" class="btn btn-primary">Evidentiraj prekršaj</button>
     </form>
+
+    <modal name="hello-world" height="auto" :scrollable="true">
+      <div class="modaldiv">
+        <h1>Prekršaj uspešno evidentiran!</h1>
+        <h2 v-if="resp.zapisnik.prekoracenjeBrzine != null">Prekršaj prekoračenja brzine:</h2>
+        <p v-if="resp.zapisnik.prekoracenjeBrzine != null">
+          Zatvorska kazna: {{resp.zapisnik.prekoracenjeBrzine.zatvorskaKazna}}<br>
+          Novčana kazna: {{resp.zapisnik.prekoracenjeBrzine.novcanaKazna}}<br>
+          Kazneni poeni: {{resp.zapisnik.prekoracenjeBrzine.kazneniPoeni}}<br>
+          Zabrana upravljanja: {{resp.zapisnik.prekoracenjeBrzine.zabranaUpravljanja}}<br>
+        </p>
+        <h2 v-if="resp.zapisnik.voznjaPodUticajem != null">Prekršaj vožnje pod uticajem:</h2>
+        <p v-if="resp.zapisnik.voznjaPodUticajem != null">
+          Zatvorska kazna: {{resp.zapisnik.voznjaPodUticajem.zatvorskaKazna}}<br>
+          Novčana kazna: {{resp.zapisnik.voznjaPodUticajem.novcanaKazna}}<br>
+          Kazneni poeni: {{resp.zapisnik.voznjaPodUticajem.kazneniPoeni}}<br>
+          Zabrana upravljanja: {{resp.zapisnik.voznjaPodUticajem.zabranaUpravljanja}}<br>
+        </p>
+        <p v-if="resp.oduzimanjeDozvole == true">
+          Vozacu je potrebno oduzeti dozvolu zato što je u prethodna 24 meseca sakupio <b>{{resp.godisnjiKazneniPoeni}}</b> kaznenih poena.
+        </p>
+      </div>
+    </modal>
   </div>
 </template>
 
@@ -117,15 +144,33 @@ export default {
           prisustvoAlkohola: '',
           prisustvoPsihoaktivnihSupstanci: false,
           ometa: false,
-          saobracajnaNesreca: false
+          saobracajnaNesreca: false,
+          prisutnoDete: false
         },
-        nasMest: "U naselju"
+        nasMest: "U naselju",
+        resp: {
+          zapisnik: {
+            prekoracenjeBrzine: {
+              zatvorskaKazna: null,
+              novcanaKazna: null,
+              kazneniPoeni: null,
+              zabranaUpravljanja: null
+            },
+            voznjaPodUticajem: {
+              zatvorskaKazna: null,
+              novcanaKazna: null,
+              kazneniPoeni: null,
+              zabranaUpravljanja: null
+            }
+          },
+          godisnjiKazneniPoeni: null,
+          oduzimanjeDozvole: null
+        }
       }
   },
   methods: {
     onSubmit: function(e) {
       e.preventDefault();
-
       if (this.$data.zapisnik.vozac.ime != null && this.$data.zapisnik.vozac.ime != '' &&
           this.$data.zapisnik.vozac.prezime != null && this.$data.zapisnik.vozac.prezime != '' &&
           this.$data.zapisnik.vozac.jmbg != null && this.$data.zapisnik.vozac.jmbg != '' &&
@@ -150,8 +195,12 @@ export default {
         axios.post('http://localhost:8080/zapisnik', this.$data.zapisnik)
         .then(response => {
           console.log('uspesno')
-          console.log(response.data.voznjaPodUticajem)
-          console.log(response.data.prekoracenjeBrzine)
+          console.log(response.data)
+          console.log(response.data.zapisnik.voznjaPodUticajem)
+          console.log(response.data.zapisnik.prekoracenjeBrzine)
+          this.$data.resp = response.data
+          this.$modal.show('hello-world');
+
         })
         .catch(e => {
           console.log('neuspesno')
@@ -203,5 +252,8 @@ label.small-title {
 }
 label {
   white-space: nowrap;
+}
+.modaldiv {
+  padding: 5px;
 }
 </style>
