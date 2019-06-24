@@ -81,7 +81,7 @@ public class TestCep {
         kSession.fireAllRules();
         kSession.getAgenda().getAgendaGroup("modul2").setFocus();
 
-        System.err.println(dates.size());
+//        System.err.println(dates.size());
         assertThat(0, is(dates.size()));
         
         clock.advanceTime(3, TimeUnit.MINUTES);
@@ -91,8 +91,8 @@ public class TestCep {
         kSession.fireAllRules();
         kSession.getAgenda().getAgendaGroup("modul2").setFocus();
         
-        System.err.println(dates.size());
-        System.err.println(dates.get(0).getPrekrsaji());
+//        System.err.println(dates.size());
+//        System.err.println(dates.get(0).getPrekrsaji());
         
         assertThat(1, is(dates.size()));
 
@@ -111,14 +111,14 @@ public class TestCep {
         		}
         		
         		if (dates.get(i).getTablice().equals(dates.get(j).getTablice()) && dates.get(j).getPrekrsaji().containsAll(dates.get(i).getPrekrsaji())) {
-        			System.out.println("removing: " + dates.get(i).getPrekrsaji());
+//        			System.out.println("removing: " + dates.get(i).getPrekrsaji());
         			dates.remove(i);
         		}
         	}
         }
         
-        System.err.println(dates.size());
-        System.err.println(dates.get(0).getPrekrsaji());
+//        System.err.println(dates.size());
+//        System.err.println(dates.get(0).getPrekrsaji());
         
         assertThat(1, is(dates.size()));
         
@@ -136,14 +136,14 @@ public class TestCep {
         		}
         		
         		if (dates.get(i).getTablice().equals(dates.get(j).getTablice()) && dates.get(j).getPrekrsaji().containsAll(dates.get(i).getPrekrsaji())) {
-        			System.out.println("removing: " + dates.get(i).getPrekrsaji());
+//        			System.out.println("removing: " + dates.get(i).getPrekrsaji());
         			dates.remove(i);
         		}
         	}
         }
         
-        System.err.println(dates.size());
-        System.err.println(dates.get(0).getPrekrsaji());
+//        System.err.println(dates.size());
+//        System.err.println(dates.get(0).getPrekrsaji());
         
         assertThat(1, is(dates.size()));
         
@@ -161,15 +161,15 @@ public class TestCep {
         		}
         		
         		if (dates.get(i).getTablice().equals(dates.get(j).getTablice()) && dates.get(j).getPrekrsaji().containsAll(dates.get(i).getPrekrsaji())) {
-        			System.out.println("removing: " + dates.get(i).getPrekrsaji());
+//        			System.out.println("removing: " + dates.get(i).getPrekrsaji());
         			dates.remove(i);
         		}
         	}
         }
         
-        System.err.println(dates.size());
-        System.err.println(dates.get(0).getPrekrsaji());
-        System.err.println(dates.get(1).getPrekrsaji());
+//        System.err.println(dates.size());
+//        System.err.println(dates.get(0).getPrekrsaji());
+//        System.err.println(dates.get(1).getPrekrsaji());
         
         assertThat(2, is(dates.size()));
 
@@ -193,7 +193,7 @@ public class TestCep {
         kSession.fireAllRules();
         kSession.getAgenda().getAgendaGroup("modul2").setFocus();
 
-        System.err.println(dates2.size());
+//        System.err.println(dates2.size());
         assertThat(0, is(dates2.size()));
         
         clock.advanceTime(15, TimeUnit.MINUTES);
@@ -203,7 +203,7 @@ public class TestCep {
         kSession.fireAllRules();
         kSession.getAgenda().getAgendaGroup("modul2").setFocus();
         
-        System.err.println(dates2.size());
+//        System.err.println(dates2.size());
         
         assertThat(0, is(dates2.size()));
 
@@ -222,14 +222,14 @@ public class TestCep {
         		}
         		
         		if (dates2.get(i).getTablice().equals(dates2.get(j).getTablice()) && dates2.get(j).getPrekrsaji().containsAll(dates2.get(i).getPrekrsaji())) {
-        			System.out.println("removing: " + dates2.get(i).getPrekrsaji());
+//        			System.out.println("removing: " + dates2.get(i).getPrekrsaji());
         			dates2.remove(i);
         		}
         	}
         }
         
-        System.err.println(dates2.size());
-        System.err.println(dates2.get(0).getPrekrsaji());
+//        System.err.println(dates2.size());
+//        System.err.println(dates2.get(0).getPrekrsaji());
         
         assertThat(1, is(dates2.size()));
         
@@ -247,14 +247,14 @@ public class TestCep {
         		}
         		
         		if (dates2.get(i).getTablice().equals(dates2.get(j).getTablice()) && dates2.get(j).getPrekrsaji().containsAll(dates2.get(i).getPrekrsaji())) {
-        			System.out.println("removing: " + dates2.get(i).getPrekrsaji());
+//        			System.out.println("removing: " + dates2.get(i).getPrekrsaji());
         			dates2.remove(i);
         		}
         	}
         }
         
-        System.err.println(dates2.size());
-        System.err.println(dates2.get(0).getPrekrsaji());
+//        System.err.println(dates2.size());
+//        System.err.println(dates2.get(0).getPrekrsaji());
         
         assertThat(1, is(dates2.size()));
     }

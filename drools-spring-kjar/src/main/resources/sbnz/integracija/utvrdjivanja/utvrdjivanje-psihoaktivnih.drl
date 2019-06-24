@@ -3,6 +3,13 @@ package sbnz.integracija
 import sbnz.integracija.example.facts.Zapisnik;
 import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 
+import java.util.List
+import java.util.ArrayList
+
+global List lista;
+global List pravilo2;
+global List pravilo3;
+
 rule "pod uticajem psihoaktivnih supstanci"
 agenda-group "modul1"
 salience 97

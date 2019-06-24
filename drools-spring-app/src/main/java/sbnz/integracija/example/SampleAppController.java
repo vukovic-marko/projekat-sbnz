@@ -1,30 +1,29 @@
 package sbnz.integracija.example;
 
 import org.apache.maven.shared.invoker.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import sbnz.integracija.example.dto.NasilnickaDTO;
+import sbnz.integracija.example.dto.TipPrekrsaja;
 import sbnz.integracija.example.dto.ZapisnikDTO;
+import sbnz.integracija.example.events.NasilnickaVoznja;
+import sbnz.integracija.example.events.PreticanjePrekoPuneLinije;
+import sbnz.integracija.example.events.ProlazakKrozCrvenoSvetlo;
 import sbnz.integracija.example.facts.Vozac;
 import sbnz.integracija.example.facts.Zapisnik;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-//import sbnz.integracija.example.facts.Item;
 
 @CrossOrigin
 @RestController
 public class SampleAppController {
-	private static Logger log = LoggerFactory.getLogger(SampleAppController.class);
 
 	private final SampleAppService sampleService;
-
+	
 	@Autowired
 	public SampleAppController(SampleAppService sampleService) {
 		this.sampleService = sampleService;
@@ -33,74 +32,80 @@ public class SampleAppController {
 	@Autowired
 	public SampleAppRepository sampleAppRepository;
 
-//	@RequestMapping(value = "/item", method = RequestMethod.GET, produces = "application/json")
-//	public Item getQuestions(@RequestParam(required = true) String id, @RequestParam(required = true) String name,
-//			@RequestParam(required = true) double cost, @RequestParam(required = true) double salePrice) {
-//
-//		Item newItem = new Item(Long.parseLong(id), name, cost, salePrice);
-//
-//		log.debug("Item request received for: " + newItem);
-//
-//		Item i2 = sampleService.getClassifiedItem(newItem);
-//
-//		return i2;
-//	}
-
-	@GetMapping("/hello")
-	public List<Zapisnik> hello() {
-		Zapisnik zapisnik = new Zapisnik();
-		zapisnik.setOmeta(true);
-		Vozac vozac = new Vozac();
-		vozac.setIme("prvi vozac");
-		zapisnik.setVozac(vozac);
-		sampleAppRepository.save(zapisnik);
-
-		Zapisnik zapisnik1 = new Zapisnik();
-		zapisnik1.setOmeta(false);
-		Vozac vozac1 = new Vozac();
-		vozac1.setIme("prvi vozac");
-		zapisnik1.setVozac(vozac1);
-		sampleAppRepository.save(zapisnik1);
-
-		return sampleAppRepository.findByVozac(vozac.getJmbg());
-	}
-
+	// modul 1
 	@PostMapping("/zapisnik")
 	public ResponseEntity<ZapisnikDTO> sendZapisnik(@RequestBody Zapisnik zapisnik) {
-//		System.out.println("***");
-//		System.out.println("ime: " + zapisnik.getVozac().getIme());
-//		System.out.println("prezime: " + zapisnik.getVozac().getPrezime());
-//		System.out.println("jmbg: " + zapisnik.getVozac().getJmbg());
-//		System.out.println("broj dozvole: " + zapisnik.getVozac().getBrojDozvole());
-//		System.out.println("tip dozvole: " + zapisnik.getVozac().getTipDozvole());
-//
-//		System.out.println("ulica: " + zapisnik.getUlica());
-//		System.out.println("naseljeno mesto: " + zapisnik.getNaseljenoMesto());
-//		System.out.println("zona: " + zapisnik.getZona());
-//		System.out.println("ostvarena brzina: " + zapisnik.getOstvarenaBrzina());
-//		System.out.println("dozvoljena brzina: " + zapisnik.getDozvoljenaBrzina());
-//		System.out.println("kolicina alkohola: " + zapisnik.getPrisustvoAlkohola());
-//		System.out.println("psihoaktivne sups: " + zapisnik.getPrisustvoPsihoaktivnihSupstanci());
-//		System.out.println("saobracajna nesreca: " + zapisnik.getSaobracajnaNesreca());
-//		System.out.println("ometa: " + zapisnik.getOmeta());
-//		System.out.println("prisutno dete: " + zapisnik.getPrisutnoDete());
-
-
-		//return ResponseEntity.ok(sampleAppRepository.save(zapisnik));
 		return ResponseEntity.ok(sampleService.obradiZapisnik(zapisnik));
-//		return ResponseEntity.ok().build();
 	}
 
 	@GetMapping("/zapisnik")
 	public ResponseEntity<List<Zapisnik>> getVozaci(@RequestBody Vozac vozac) {
 		return ResponseEntity.ok(sampleAppRepository.findByVozac(vozac.getJmbg()));
 	}
-
-	@GetMapping("/hi")
-	public String hi() {
-		return "hi!";
+	
+	// modul 2
+	
+	@GetMapping("/nasilnicka/dates")
+	public ResponseEntity<List<NasilnickaVoznja>> getDates() {
+		return ResponseEntity.ok(sampleService.getDates());
 	}
-
+	
+	@GetMapping("/nasilnicka/dates2")
+	public ResponseEntity<List<NasilnickaVoznja>> getDates2() {
+		return ResponseEntity.ok(sampleService.getDates2());
+	}
+	
+	@GetMapping("/nasilnicka/dates3")
+	public ResponseEntity<List<NasilnickaVoznja>> getDates3() {
+		return ResponseEntity.ok(sampleService.getDates3());
+	}
+	
+	@PostMapping("/nasilnicka")
+	public ResponseEntity<Boolean> addNas(@RequestBody NasilnickaDTO n) {
+		if (n.getTipPrekrsaja() == TipPrekrsaja.Prolazak_kroz_crveno_svetlo) {
+			ProlazakKrozCrvenoSvetlo p = new ProlazakKrozCrvenoSvetlo(n.getTablice());
+			return ResponseEntity.ok(sampleService.dodajPrekrsaj(p));
+		} else if (n.getTipPrekrsaja() == TipPrekrsaja.Prelazak_preko_pune_linije) {
+			PreticanjePrekoPuneLinije p = new PreticanjePrekoPuneLinije(n.getTablice());
+			return ResponseEntity.ok(sampleService.dodajPrekrsaj(p));
+		}
+				
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@DeleteMapping("/nasilnicka/dates/{idx}")
+	public ResponseEntity<Boolean> deleteFromDates(@PathVariable Integer idx) {
+		if (sampleService.getDates().size() > idx) {
+			sampleService.getDates().remove(idx.intValue());
+			return ResponseEntity.ok(true);
+		}
+		
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@DeleteMapping("/nasilnicka/dates2/{idx}")
+	public ResponseEntity<Boolean> deleteFromDates2(@PathVariable Integer idx) {
+		if (sampleService.getDates2().size() > idx) {
+			sampleService.getDates2().remove(idx.intValue());
+			return ResponseEntity.ok(true);
+		}
+		
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@DeleteMapping("/nasilnicka/dates3/{idx}")
+	public ResponseEntity<Boolean> deleteFromDates3(@PathVariable Integer idx) {
+		if (sampleService.getDates3().size() > idx) {
+			sampleService.getDates3().remove(idx.intValue());
+			return ResponseEntity.ok(true);
+		}
+		
+		return ResponseEntity.badRequest().build();
+	}
+	
+	// dodavanje pravila
+	
+	@SuppressWarnings("serial")
 	@GetMapping("/maven")
 	public void maven() {
 		File pom = new File("drools-spring-kjar/pom.xml");

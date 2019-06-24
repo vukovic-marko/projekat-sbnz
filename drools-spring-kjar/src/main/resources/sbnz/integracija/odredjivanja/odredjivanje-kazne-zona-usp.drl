@@ -4,6 +4,13 @@ import sbnz.integracija.example.facts.Zapisnik;
 import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
 import sbnz.integracija.example.facts.Kazna;
 
+import java.util.List
+import java.util.ArrayList
+
+global List lista;
+global List pravilo2;
+global List pravilo3;
+
 rule "prekoracenje vece od 50 km/h u zoni usporenog saobracaja"
 agenda-group "modul1"
     salience 19

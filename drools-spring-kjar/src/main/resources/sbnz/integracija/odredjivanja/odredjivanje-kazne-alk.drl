@@ -5,6 +5,10 @@ import sbnz.integracija.example.facts.Kazna;
 import sbnz.integracija.example.facts.KaznaVoznjaPodUticajem;
 import sbnz.integracija.example.facts.Vozac;
 
+global List lista;
+global List pravilo2;
+global List pravilo3;
+
 rule "kazna za potpunu alkoholisanost"
 agenda-group "modul1"
 	when

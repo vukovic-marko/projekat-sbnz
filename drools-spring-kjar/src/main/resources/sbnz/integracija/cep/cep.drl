@@ -12,16 +12,16 @@ global List lista;
 global List pravilo2;
 global List pravilo3;
 
-rule "log event"
-agenda-group "modul2"
-    when
-		ProlazakKrozCrvenoSvetlo( $tablice: tablice, $time: executionTime )
-    then
-        System.err.println("log");
-        System.err.println($time);
-        System.err.println($tablice);
-        System.out.println("");
-end
+//rule "log event"
+//agenda-group "modul2"
+//    when
+//		ProlazakKrozCrvenoSvetlo( $tablice: tablice, $time: executionTime )
+//    then
+//        System.err.println("log");
+//        System.err.println($time);
+//        System.err.println($tablice);
+//        System.out.println("");
+//end
 
 rule "prolazak kroz crveno svetlo 2 ili vise puta u roku od 10 minuta"
 agenda-group "modul2"
@@ -32,7 +32,7 @@ agenda-group "modul2"
             collectList($timestamp)
        )
     then
-        System.err.println("nasilnicka voznja");
+//        System.err.println("nasilnicka voznja");
         List<Date> dates = new ArrayList($l);
         dates.add($p.getExecutionTime());
         //lista.add($l.get(0));
@@ -50,7 +50,7 @@ agenda-group "modul2"
             collectList($timestamp)
        )
     then
-        System.err.println("nasilnicka voznja 2");
+//        System.err.println("nasilnicka voznja 2");
         List<Date> dates = new ArrayList($l);
         dates.add($p.getExecutionTime());
         //lista.add($l.get(0));
@@ -64,11 +64,11 @@ agenda-group "modul2"
     when
 		PreticanjePrekoPuneLinije( $tablice: tablice, $time: executionTime )
     then
-        System.err.println("*");
-        System.err.println("preticanje preko pune linije - nasilnicka voznja");
-        System.err.println($time);
-        System.err.println($tablice);
-        System.out.println("");
+//        System.err.println("*");
+//        System.err.println("preticanje preko pune linije - nasilnicka voznja");
+//        System.err.println($time);
+//        System.err.println($tablice);
+//        System.out.println("");
         NasilnickaVoznja n = new NasilnickaVoznja(new ArrayList<Date>() {{ add($time); }}, $tablice);
         pravilo3.add(n);
 end

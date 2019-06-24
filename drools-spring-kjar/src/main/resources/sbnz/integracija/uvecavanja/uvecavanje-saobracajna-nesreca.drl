@@ -12,6 +12,10 @@ import java.lang.Integer
 import java.util.Arrays
 import java.lang.Double;
 
+global List lista;
+global List pravilo2;
+global List pravilo3;
+
 rule "dodeljivanje 2 kaznena poena za izazivanje saobracajne nesrece prilikom prekoracenja brzine ako kaznom oni nisu dodeljeni"
 agenda-group "modul1"
 salience -20

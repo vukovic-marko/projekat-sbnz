@@ -5,6 +5,12 @@ import sbnz.integracija.example.facts.KaznaPrekoracenjaBrzine;
 import sbnz.integracija.example.facts.Kazna;
 import sbnz.integracija.example.facts.Vozac;
 
+import java.util.List
+import java.util.ArrayList
+
+global List lista;
+global List pravilo2;
+global List pravilo3;
 
 rule "prekoracenje brzine za vozaca sa trajnom dozvolom"
 agenda-group "modul1"
