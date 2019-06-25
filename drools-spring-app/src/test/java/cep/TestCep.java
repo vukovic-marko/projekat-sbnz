@@ -2,9 +2,6 @@ package cep;
 
 import static org.junit.Assert.*;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,11 +10,8 @@ import java.util.concurrent.TimeUnit;
 import org.drools.core.ClockType;
 import org.drools.core.time.SessionPseudoClock;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.kie.api.KieBase;
 import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
 import org.kie.api.conf.EventProcessingOption;

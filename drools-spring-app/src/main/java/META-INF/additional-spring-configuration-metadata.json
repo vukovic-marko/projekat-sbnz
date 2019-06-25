@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "app.properties.maven_home",
+  "type": "java.lang.String",
+  "description": "A description for 'app.properties.maven_home'"
+}]}

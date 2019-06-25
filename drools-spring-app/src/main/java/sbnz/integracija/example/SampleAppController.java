@@ -24,9 +24,12 @@ public class SampleAppController {
 
 	private final SampleAppService sampleService;
 	
+	private final AppProperties properties;
+	
 	@Autowired
-	public SampleAppController(SampleAppService sampleService) {
+	public SampleAppController(SampleAppService sampleService, AppProperties properties) {
 		this.sampleService = sampleService;
+		this.properties = properties;
 	}
 
 	@Autowired
@@ -115,15 +118,16 @@ public class SampleAppController {
 		request.setGoals(new ArrayList<String>() {{ add("clean"); add("install"); }});
 
 		Invoker invoker = new DefaultInvoker();
-		invoker.setMavenHome(new File("/opt/maven")); // TODO vidi sta s ovim
+		invoker.setMavenHome(new File(properties.getMaven_home()));
 		try {
 			invoker.execute(request);
-			
-			Thread.sleep(5000);
-			
-			sampleService.reload();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@GetMapping("/refresh")
+	public void refresh() {
+		sampleService.reload();
 	}
 }
