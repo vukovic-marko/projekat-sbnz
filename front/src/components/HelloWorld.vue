@@ -119,7 +119,7 @@
 <script>
 
 import axios from 'axios';
-import { constants } from 'crypto';
+// import { constants } from 'crypto';
 
 export default {
   name: "HelloWorld",
@@ -191,20 +191,21 @@ export default {
 
         // console.log(this.$data.zapisnik);
 
-        console.log('saljem zahtev')
+        // console.log('saljem zahtev')
         axios.post('http://localhost:8080/zapisnik', this.$data.zapisnik)
         .then(response => {
-          console.log('uspesno')
-          console.log(response.data)
-          console.log(response.data.zapisnik.voznjaPodUticajem)
-          console.log(response.data.zapisnik.prekoracenjeBrzine)
+          // console.log('uspesno')
+          // console.log(response.data)
+          // console.log(response.data.zapisnik.voznjaPodUticajem)
+          // console.log(response.data.zapisnik.prekoracenjeBrzine)
           this.$data.resp = response.data
           this.$modal.show('hello-world');
 
         })
+        // eslint-disable-next-line
         .catch(e => {
-          console.log('neuspesno')
-          console.log(e);
+          alert('Slanje zapisnika nije uspelo!')
+          // console.log(e);
         })
       } else {
         alert('Potrebno je popuniti sva polja!')

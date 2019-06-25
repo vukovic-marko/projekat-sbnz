@@ -108,7 +108,7 @@ public class SampleAppController {
 	@SuppressWarnings("serial")
 	@GetMapping("/maven")
 	public void maven() {
-		File pom = new File("drools-spring-kjar/pom.xml");
+		File pom = new File("../drools-spring-kjar/pom.xml");
 
 		InvocationRequest request = new DefaultInvocationRequest();
 		request.setPomFile(pom);
@@ -118,7 +118,11 @@ public class SampleAppController {
 		invoker.setMavenHome(new File("/opt/maven")); // TODO vidi sta s ovim
 		try {
 			invoker.execute(request);
-		} catch (MavenInvocationException e) {
+			
+			Thread.sleep(5000);
+			
+			sampleService.reload();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

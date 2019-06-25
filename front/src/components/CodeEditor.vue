@@ -71,9 +71,11 @@ export default {
         e.preventDefault();
 
         axios.get('http://localhost:8080/maven')
+        // eslint-disable-next-line
         .then(response => {
           alert('Projekat uspesno osvezen!');
         })
+        // eslint-disable-next-line
         .catch(e => {
           alert('Neuspesno osvezavanje projekta!');
         })

@@ -34,7 +34,7 @@ public class SampleAppService {
 
 	private final KieContainer kieContainer;
 	
-	private final KieSession kieSession;
+	private KieSession kieSession;
 	
 	private List<NasilnickaVoznja> dates;
 	private List<NasilnickaVoznja> dates2;
@@ -194,6 +194,26 @@ public class SampleAppService {
 	
 	public List<NasilnickaVoznja> getDates3() {
 		return dates3;
+	}
+
+	public void reload() {
+		System.out.println("reloading");
+		
+		KieServices ks = KieServices.Factory.get();
+		KieBaseConfiguration config = ks.newKieBaseConfiguration();
+	    config.setOption(EventProcessingOption.STREAM);
+	    
+	    kieSession.dispose();
+		kieSession = kieContainer.newKieBase(config).newKieSession();
+		
+		dates = new ArrayList<NasilnickaVoznja>();
+		dates2 = new ArrayList<NasilnickaVoznja>();
+		dates3 = new ArrayList<NasilnickaVoznja>();
+		
+		kieSession.setGlobal("lista", dates);
+		kieSession.setGlobal("pravilo2", dates2);
+		kieSession.setGlobal("pravilo3", dates3);
+
 	}
 	
 }
